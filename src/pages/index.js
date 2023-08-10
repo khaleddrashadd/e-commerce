@@ -1,3 +1,4 @@
-import SetupPage from './SetupPage';
+import HomePage from './HomePage';
+import StorePage from './StorePage';
 
-export { SetupPage };
+export { HomePage, StorePage };

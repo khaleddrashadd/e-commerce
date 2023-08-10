@@ -1,3 +1,2 @@
-import RootLayout from './RootLayout';
-
-export { RootLayout };
+import DashboardLayout from './DashboardLayout';
+export { DashboardLayout };

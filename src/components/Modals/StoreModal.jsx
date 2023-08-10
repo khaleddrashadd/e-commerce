@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { storeModalActions } from '../../redux/slices/store-modal-slice';
+import { useFetcher, redirect } from 'react-router-dom';
+import { supabase } from '../../lib/supabase/Config';
+import { useAuth } from '@clerk/clerk-react';
+
 import Modal from '../ui/Modal';
 import {
   Form,
@@ -13,9 +16,11 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
-const StoreModal = () => {
+const StoreModal = ({onClose,isOpen}) => {
+  const { userId } = useAuth();
+
   const schema = z.object({
     storeName: z.string().trim().nonempty(),
   });
@@ -27,17 +32,17 @@ const StoreModal = () => {
     },
   });
 
-  const dispatch = useDispatch();
-  const { isOpen } = useSelector(state => state.storeModal);
-  const onClose = () => {
-    dispatch(storeModalActions.closeModal());
-  };
+  const fetcher = useFetcher();
 
-  const onSubmit = async data => {
-    console.log(data);
-    //TODO: Add store to database
+  const onSubmit = data => {
+    fetcher.submit(
+      {
+        ...data,
+        userId,
+      },
+      { method: 'POST' }
+    );
   };
-
   return (
     <Modal
       title="Create a store"
@@ -58,6 +63,9 @@ const StoreModal = () => {
                       <Input
                         placeholder="Enter your store name"
                         {...field}
+                        name="storeName"
+                        type="text"
+                        disabled={fetcher.state === 'submitting'}
                       />
                     </FormControl>
                     <FormMessage />
@@ -67,10 +75,16 @@ const StoreModal = () => {
               <div className="space-x-2 pt-6 flex items-center justify-end">
                 <Button
                   variant="outline"
+                  type="button"
+                  disabled={fetcher.state === 'submitting'}
                   onClick={onClose}>
                   Cancel
                 </Button>
-                <Button type="submit">Continue</Button>
+                <Button
+                  type="submit"
+                  disabled={fetcher.state === 'submitting'}>
+                  Continue
+                </Button>
               </div>
             </form>
           </Form>
@@ -79,4 +93,27 @@ const StoreModal = () => {
     </Modal>
   );
 };
+
+export const action = async ({ request }) => {
+  const data = await request.formData();
+  const storeName = data.get('storeName');
+  const userId = data.get('userId');
+  if (!userId) {
+    toast.error('Unauthorized 401');
+  }
+  if (!storeName) {
+    toast.error('Store name is required 400');
+  }
+  const { data:store,error } = await supabase.from('store').insert({
+    name: storeName,
+    userId: userId,
+  }).select().limit(1).single();
+
+  if (error) {
+    toast.error('something went wrong 500');
+  }
+  toast.success('Store created successfully');
+  return redirect(`/admin/${store.id}`);
+};
+
 export default StoreModal;
