@@ -1,40 +1,50 @@
 import StoreModal from '../components/Modals/StoreModal';
-import { useDispatch } from 'react-redux';
-import { storeModalActions } from '../redux/slices/store-modal-slice';
 import { useEffect } from 'react';
 import { supabase } from '../lib/supabase/Config';
 import { useAuth } from '@clerk/clerk-react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeModalActions } from '../redux/slices/store-modal-slice';
 
 const HomePage = () => {
   const { userId } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
+  const hasParams = Object.keys(params).length > 0;
 
   const onClose = () => {
+    if (!hasParams) return;
     dispatch(storeModalActions.closeModal());
   };
+  const { isOpen } = useSelector(state => state.storeModal);
+
   useEffect(() => {
     const fetchStore = async () => {
-      const { data: store, error } = await supabase
+      const { data: storeData, error } = await supabase
         .from('store')
         .select()
-        .eq('userId', userId)
-        .limit(1);
+        .eq('userId', userId);
 
-      if (error) toast.error(error.message || 'Something went wrong');
+      const storeIds = storeData.map(store => store.id);
+      const idExist = storeIds.includes(params.storeId);
 
-      if (store[0]?.id) navigate(`/admin/${store[0].id}`, { replace: true });
+      if (error) return toast.error(error.message || 'Something went wrong');
+      if (storeData.length === 0) dispatch(storeModalActions.openModal());
+      if(!idExist) navigate(`/admin/${storeData[0].id}`);
     };
     fetchStore();
-  }, [userId, navigate]);
+  }, [userId, dispatch, navigate, params.storeId]);
 
   return (
-    <StoreModal
-      isOpen
-      onClose={onClose}
-    />
+    <>
+      <StoreModal
+        isOpen={isOpen}
+        onClose={onClose}
+      />
+      <Outlet />
+    </>
   );
 };
 

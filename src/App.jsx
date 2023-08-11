@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { HomePage, StorePage } from './pages';
+import { HomePage, StorePage, StoreSettingsPage } from './pages';
 import store from './redux/store';
 import { action as storeAction } from '@/components/Modals/StoreModal';
 
@@ -9,7 +9,6 @@ import {
   RedirectToSignIn,
   SignedIn,
   SignedOut,
-  UserButton,
 } from '@clerk/clerk-react';
 import { Toaster } from 'react-hot-toast';
 import { DashboardLayout } from './Layouts';
@@ -20,12 +19,9 @@ const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 const router = createBrowserRouter([
   {
     path: '/admin',
+    element: <HomePage />,
+    action: storeAction,
     children: [
-      {
-        index: true,
-        element: <HomePage />,
-        action: storeAction,
-      },
       {
         path: ':storeId',
         element: <DashboardLayout />,
@@ -34,6 +30,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <StorePage />,
+          },
+          {
+            path: 'settings',
+            element: <StoreSettingsPage />,
           },
         ],
       },
@@ -53,7 +53,6 @@ function App() {
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
-      <UserButton afterSignOutUrl="/" />
     </ClerkProvider>
   );
 }

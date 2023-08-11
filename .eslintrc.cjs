@@ -18,5 +18,6 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'react/display-name': 'off',
+    'react-refresh/only-export-components': 'off',
   },
 };

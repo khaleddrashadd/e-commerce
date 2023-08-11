@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFetcher, redirect } from 'react-router-dom';
+import { useFetcher } from 'react-router-dom';
 import { supabase } from '../../lib/supabase/Config';
 import { useAuth } from '@clerk/clerk-react';
 
@@ -17,8 +17,12 @@ import {
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { toast } from 'react-hot-toast';
+import { storeModalActions } from '../../redux/slices/store-modal-slice';
+import { useDispatch } from 'react-redux';
 
-const StoreModal = ({onClose,isOpen}) => {
+const StoreModal = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
+
   const { userId } = useAuth();
 
   const schema = z.object({
@@ -42,7 +46,9 @@ const StoreModal = ({onClose,isOpen}) => {
       },
       { method: 'POST' }
     );
+    dispatch(storeModalActions.closeModal());
   };
+
   return (
     <Modal
       title="Create a store"
@@ -104,16 +110,23 @@ export const action = async ({ request }) => {
   if (!storeName) {
     toast.error('Store name is required 400');
   }
-  const { data:store,error } = await supabase.from('store').insert({
-    name: storeName,
-    userId: userId,
-  }).select().limit(1).single();
+  const { data: store, error } = await supabase
+    .from('store')
+    .insert({
+      name: storeName,
+      userId: userId,
+    })
+    .select()
+    .limit(1)
+    .single();
 
   if (error) {
     toast.error('something went wrong 500');
   }
   toast.success('Store created successfully');
-  return redirect(`/admin/${store.id}`);
+  window.location.assign(`/admin/${store.id}`);
+
+  return store;
 };
 
 export default StoreModal;

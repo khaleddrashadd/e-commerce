@@ -16,6 +16,10 @@ body,
   display: none;
 }
 
+.active {
+  @apply text-black dark:text-white;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
