@@ -32,7 +32,7 @@ const HomePage = () => {
 
       if (error) return toast.error(error.message || 'Something went wrong');
       if (storeData.length === 0) dispatch(storeModalActions.openModal());
-      if(!idExist) navigate(`/admin/${storeData[0].id}`);
+      if (!idExist) navigate(`/admin/${storeData[0]?.id}`);
     };
     fetchStore();
   }, [userId, dispatch, navigate, params.storeId]);

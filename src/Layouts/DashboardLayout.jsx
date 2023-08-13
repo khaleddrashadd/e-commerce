@@ -24,7 +24,7 @@ export const loader = async ({ params: { storeId } }) => {
     .single();
 
   if (error) {
-    toast.error('something went wrong 500');
+    toast.error(error.message||'something went wrong 500');
   }
 
   if (!store) {
