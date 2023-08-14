@@ -11,6 +11,7 @@ const MainNav = () => {
         <NavLink
           key={route.to}
           to={route.to}
+          end
           className="text-sm font-medium transition hover:text-primary text-muted-foreground">
           {route.label}
         </NavLink>

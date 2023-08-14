@@ -1,6 +1,6 @@
 import { Trash } from 'lucide-react';
-import { Button } from './ui/Button';
-import Heading from './ui/Heading';
+import { Button } from '../ui/Button';
+import Heading from '../ui/Heading';
 import { Separator } from '@/components/ui/Separator';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -13,12 +13,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
-import { Input } from './ui/Input';
+} from '../ui/form';
+import { Input } from '../ui/Input';
 import { useFetcher } from 'react-router-dom';
-import AlertModal from './Modals/AlertModal';
+import AlertModal from '../Modals/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { alertModalActions } from '../redux/slices/alert-modal-slice';
+import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
 const schema = z.object({
   name: z.string().trim().nonempty(),
@@ -43,6 +43,8 @@ const SettingsForm = ({ store }) => {
   };
 
   const onSubmit = data => {
+        console.log(data, 'bill form');
+
     fetcher.submit(data, { method: 'PATCH' });
   };
 

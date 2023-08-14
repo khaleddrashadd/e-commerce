@@ -6,7 +6,7 @@ const initialState = {
 
 const alertModalSlice = createSlice({
   name: 'alertModal',
-  initialState: initialState,
+  initialState,
   reducers: {
     openModal(state) {
       state.isOpen = true;

@@ -1,6 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { HomePage, StorePage, StoreSettingsPage } from './pages';
+import {
+  BillboardPage,
+  BillboardsPage,
+  HomePage,
+  StorePage,
+  StoreSettingsPage,
+} from './pages';
 import store from './redux/store';
 
 import {
@@ -11,11 +17,13 @@ import {
 } from '@clerk/clerk-react';
 import { Toaster } from 'react-hot-toast';
 import { DashboardLayout } from './Layouts';
-// import { insertStoreAction, storeLoader, updatetStoreAction } from './lib/react-router-dom';
 import {
   storeUpdateDelete,
   storeLoader,
   insertStoreAction,
+  billboardLoader,
+  billboardAction,
+  billboardsLoader,
 } from './lib/react-router-dom';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -40,6 +48,22 @@ const router = createBrowserRouter([
             element: <StoreSettingsPage />,
             loader: storeLoader,
             action: storeUpdateDelete,
+          },
+          {
+            path: 'billboards',
+            children: [
+              {
+                index: true,
+                element: <BillboardsPage />,
+                loader: billboardsLoader,
+              },
+              {
+                path: ':billboardId',
+                element: <BillboardPage />,
+                loader: billboardLoader,
+                action: billboardAction,
+              },
+            ],
           },
         ],
       },

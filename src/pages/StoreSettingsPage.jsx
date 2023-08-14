@@ -1,9 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
-import SettingsForm from '../components/SettingsForm';
+import SettingsForm from '../components/settings/SettingsForm';
 
 const StoreSettingsPage = () => {
   const store = useLoaderData();
-
 
   return (
     <div className="flex flex-col p-8 pt-6 gap-4">

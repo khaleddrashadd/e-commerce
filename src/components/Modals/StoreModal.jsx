@@ -26,7 +26,6 @@ const StoreModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const { userId } = useAuth();
 
-
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -97,6 +96,5 @@ const StoreModal = ({ isOpen, onClose }) => {
     </Modal>
   );
 };
-
 
 export default StoreModal;

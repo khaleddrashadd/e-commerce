@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase/Config';
 import { toast } from 'react-hot-toast';
 
-const Navbar = () => {
+const Navbar = ({userId}) => {
   const [stores, setStores] = useState([]);
   useEffect(() => {
     const getStore = async () => {
-      const { data: storesData, error } = await supabase.from('store').select();
+      const { data: storesData, error } = await supabase.from('store').select().eq('userId',userId);
       if (error) return toast.error(error.message || 'Something went wrong');
       setStores(storesData);
     };
