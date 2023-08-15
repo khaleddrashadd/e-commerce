@@ -1,21 +1,23 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {
-  BillboardPage,
-  BillboardsPage,
-  HomePage,
-  StorePage,
-  StoreSettingsPage,
-} from './pages';
-import store from './redux/store';
-
-import {
   ClerkProvider,
   RedirectToSignIn,
   SignedIn,
   SignedOut,
 } from '@clerk/clerk-react';
 import { Toaster } from 'react-hot-toast';
+import {
+  BillboardPage,
+  BillboardsPage,
+  CategoriesPage,
+  CategoryPage,
+  HomePage,
+  StorePage,
+  StoreSettingsPage,
+} from './pages';
+import store from './redux/store';
+
 import { DashboardLayout } from './Layouts';
 import {
   storeUpdateDelete,
@@ -24,6 +26,9 @@ import {
   billboardLoader,
   billboardAction,
   billboardsLoader,
+  categoriesLoader,
+  categoryAction,
+  categoryLoader,
 } from './lib/react-router-dom';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -51,17 +56,35 @@ const router = createBrowserRouter([
           },
           {
             path: 'billboards',
+            loader: billboardsLoader,
+            id: 'billboards',
             children: [
               {
                 index: true,
                 element: <BillboardsPage />,
-                loader: billboardsLoader,
               },
               {
                 path: ':billboardId',
                 element: <BillboardPage />,
                 loader: billboardLoader,
                 action: billboardAction,
+              },
+            ],
+          },
+          {
+            path: 'categories',
+            loader: categoriesLoader,
+            id: 'categories',
+            children: [
+              {
+                index: true,
+                element: <CategoriesPage />,
+              },
+              {
+                path: ':categoryId',
+                element: <CategoryPage />,
+                loader: categoryLoader,
+                action: categoryAction,
               },
             ],
           },

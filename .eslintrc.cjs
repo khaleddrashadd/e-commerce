@@ -5,7 +5,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -14,7 +13,7 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -22,7 +21,6 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'react-refresh/only-export-components': 'off',
 
     'max-len': 0,
     'no-param-reassign': 0,
@@ -30,7 +28,6 @@ module.exports = {
     'react/function-component-definition': 0,
     'react/react-in-jsx-scope': 0,
     'import/extensions': 0,
-    'react/prop-types': 0,
     'linebreak-style': 0,
     'react/state-in-constructor': 0,
     'import/prefer-default-export': 0,
@@ -41,7 +38,14 @@ module.exports = {
         maxEOF: 1,
       },
     ],
-
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['^@/'],
+      },
+    ],
+    'react/jsx-props-no-spreading': 0,
+    'consistent-return': 0,
     'object-curly-newline': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-one-expression-per-line': 0,
@@ -50,7 +54,7 @@ module.exports = {
     'jsx-a11y/no-autofocus': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'react/no-array-index-key': 0,
-    'import/oreder': [
+    'import/order': [
       'error',
       {
         groups: [

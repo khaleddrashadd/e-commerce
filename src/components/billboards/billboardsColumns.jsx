@@ -5,7 +5,10 @@ import {
   MoreHorizontal,
   Trash,
 } from 'lucide-react';
-import { Button } from './Button';
+import { useFetcher, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '../ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,39 +16,33 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './dropdown-menu';
-import { useFetcher, useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
+} from '../ui/dropdown-menu';
 import AlertModal from '../Modals/AlertModal';
-import { useDispatch, useSelector } from 'react-redux';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
-export const columns = [
+export const billboardsColumns = [
   {
     accessorKey: 'label',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'a-z')}>
-          Label
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      >
+        Label
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     accessorKey: 'createdAt',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'desc')}>
+        Date
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     id: 'actions',
@@ -71,7 +68,7 @@ export const columns = [
         );
         dispatch(alertModalActions.closeModal());
       };
-      
+
       return (
         <>
           <AlertModal
@@ -82,8 +79,7 @@ export const columns = [
           />
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <div
-                className="h-8 w-8 p-0 flex items-center justify-center">
+              <div className="h-8 w-8 p-0 flex items-center justify-center">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </div>

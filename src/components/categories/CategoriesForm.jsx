@@ -5,43 +5,37 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useFetcher } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { useEffect } from 'react';
+import { Form } from '../ui/form';
 import AlertModal from '../Modals/AlertModal';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
-import ImageUpload from '../ui/ImageUpload';
-import { supabase } from '../../lib/supabase/Config';
 import Heading from '../ui/Heading';
 import { Button } from '../ui/button';
 import InputField from '../ui/InputField';
+import SelectField from '../ui/SelectField';
 import { Separator } from '@/components/ui/Separator';
 
 const schema = z.object({
-  label: z.string().trim().nonempty(),
-  imageUrl: z.string().trim().nonempty(),
+  name: z.string().trim().nonempty(),
+  billboardId: z.string({
+    required_error: 'Please select a billboard.',
+  }).trim().nonempty(),
 });
 
-const BillboardsForm = ({ billboard }) => {
+const CategoriesForm = ({ category }) => {
   const fetcher = useFetcher();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.alertModal);
 
-  const title = billboard ? 'Edit billboard' : 'Create billboard';
-  const description = billboard ? 'Edit a billboard.' : 'Add a new billboard';
-  const action = billboard ? 'Save changes' : 'Create';
+  const title = category ? 'Edit category' : 'Create category';
+  const description = category ? 'Edit a category.' : 'Add a new category';
+  const action = category ? 'Save changes' : 'Create';
 
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      label: billboard?.label || '',
-      imageUrl: billboard?.imageUrl || '',
+      name: category?.name || '',
+      billboardId: category?.billboardId || '',
     },
   });
 
@@ -52,20 +46,18 @@ const BillboardsForm = ({ billboard }) => {
   };
 
   const onSubmit = (data) => {
-    if (!billboard) {
+    if (!category) {
       fetcher.submit(data, { method: 'POST' });
       return;
     }
     fetcher.submit(data, { method: 'PATCH' });
   };
 
-  const onRemoveImage = async (path, field) => {
-    if (!path) return;
-    const { error } = await supabase.storage.from('e-commerce').remove([path]);
-    if (error) return toast.error(error.message || 'Error removing image');
-    toast.success('Image removed');
-    field.onChange('');
-  };
+  useEffect(() => {
+    if (fetcher.state !== 'idle' || fetcher.data) return;
+    fetcher.load('../../billboards');
+  }, [fetcher]);
+
   return (
     <>
       <AlertModal
@@ -79,7 +71,7 @@ const BillboardsForm = ({ billboard }) => {
           title={title}
           description={description}
         />
-        {billboard && (
+        {category && (
           <Button
             variant="destructive"
             size="icon"
@@ -97,34 +89,21 @@ const BillboardsForm = ({ billboard }) => {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="space-y-8"
           >
-            <FormField
-              control={methods.control}
-              name="imageUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">
-                    Background image
-                  </FormLabel>
-                  <FormControl>
-                    <ImageUpload
-                      value={field.value ? [field.value] : []}
-                      onChange={(url) => field.onChange(url)}
-                      onRemove={(path) => onRemoveImage(path, field)}
-                      disabled={fetcher.state === 'submitting'}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <InputField
               control={methods.control}
               disabled={fetcher.state === 'submitting'}
-              placeholder="Billboard label"
-              name="label"
-              title="Label"
+              placeholder="Category name"
+              name="name"
+              title="Name"
             />
-
+            <SelectField
+              control={methods.control}
+              disabled={fetcher.state === 'submitting'}
+              placeholder="Select a billboard"
+              name="billboardId"
+              title="Billboard"
+              data={fetcher.data}
+            />
             <Button
               type="submit"
               disabled={fetcher.state === 'submitting'}
@@ -138,4 +117,4 @@ const BillboardsForm = ({ billboard }) => {
   );
 };
 
-export default BillboardsForm;
+export default CategoriesForm;

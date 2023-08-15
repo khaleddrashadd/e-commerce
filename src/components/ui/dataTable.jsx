@@ -7,6 +7,9 @@ import {
   getFilteredRowModel,
 } from '@tanstack/react-table';
 
+import { useState } from 'react';
+import { Input } from './input';
+import { Button } from './button';
 import {
   Table,
   TableBody,
@@ -15,9 +18,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from './Button';
-import { Input } from './Input';
-import { useState } from 'react';
 
 export function DataTable({ columns, data, searchKey }) {
   const [sorting, setSorting] = useState([]);
@@ -43,38 +43,35 @@ export function DataTable({ columns, data, searchKey }) {
         <Input
           placeholder="Search for billboards."
           value={table.getColumn(searchKey)?.getFilterValue() ?? ''}
-          onChange={event =>
-            table.getColumn(searchKey)?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
           className="max-w-sm"
         />
       </div>
       <Table>
         <TableHeader>
-          {table.getHeaderGroups().map(headerGroup => (
+          {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map(row => (
+            table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && 'selected'}>
-                {row.getVisibleCells().map(cell => (
+                data-state={row.getIsSelected() && 'selected'}
+              >
+                {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -85,7 +82,8 @@ export function DataTable({ columns, data, searchKey }) {
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center">
+                className="h-24 text-center"
+              >
                 No results.
               </TableCell>
             </TableRow>
@@ -97,14 +95,16 @@ export function DataTable({ columns, data, searchKey }) {
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}>
+          disabled={!table.getCanPreviousPage()}
+        >
           Previous
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}>
+          disabled={!table.getCanNextPage()}
+        >
           Next
         </Button>
       </div>

@@ -1,9 +1,9 @@
-import { useLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 import { Billboards } from '../components/billboards';
 import { format } from 'date-fns';
 
 const BillboardsPage = () => {
-  const billboards = useLoaderData();
+  const billboards = useRouteLoaderData('billboards');
   const formattedBillboards = billboards.map(billboard => ({
     id: billboard.id,
     label: billboard.label,

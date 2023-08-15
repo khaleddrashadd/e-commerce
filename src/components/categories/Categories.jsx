@@ -1,19 +1,19 @@
 import { Plus } from 'lucide-react';
-import { Button } from '../ui/Button';
-import Heading from '../ui/Heading';
-import { Separator } from '../ui/Separator';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../ui/button';
+import Heading from '../ui/Heading';
+import { Separator } from '../ui/separator';
 import { DataTable } from '../ui/dataTable';
-import { billboardsColumns } from './billboardsColumns';
+import { categoriesColumns } from './categoriesColumns';
 
-const Billboards = ({ billboards }) => {
+const Categories = ({ categories }) => {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Billboards (${billboards?.length})`}
-          description="Manage billboards of your store"
+          title={`Categories (${categories?.length})`}
+          description="Manage categories of your store"
         />
         <Button onClick={() => navigate('new')}>
           <Plus
@@ -25,11 +25,11 @@ const Billboards = ({ billboards }) => {
       </div>
       <Separator />
       <DataTable
-        data={billboards}
-        columns={billboardsColumns}
-        searchKey="label"
+        data={categories}
+        columns={categoriesColumns}
+        searchKey="name"
       />
     </>
   );
 };
-export default Billboards;
+export default Categories;
