@@ -2,7 +2,7 @@ import { toast } from 'react-hot-toast';
 import { supabase } from '../../supabase/Config';
 import { redirect } from 'react-router-dom';
 
-const storeUpdateDelete = async ({ request, params }) => {
+const storeAction = async ({ request, params }) => {
   const method = await request.method;
 
   switch (method) {
@@ -35,4 +35,4 @@ const storeUpdateDelete = async ({ request, params }) => {
       return null;
   }
 };
-export default storeUpdateDelete;
+export default storeAction;

@@ -70,14 +70,14 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      borderWidth: {
+          important: '6px !important',
+      },
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
       mono: ['JetBrains Mono', 'monospace'],
-    },
-    borderWidth: {
-      important: '6px !important',
     },
   },
   plugins: [require('tailwindcss-animate')],

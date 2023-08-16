@@ -13,6 +13,8 @@ import {
   CategoriesPage,
   CategoryPage,
   HomePage,
+  SizePage,
+  SizesPage,
   StorePage,
   StoreSettingsPage,
 } from './pages';
@@ -20,7 +22,7 @@ import store from './redux/store';
 
 import { DashboardLayout } from './Layouts';
 import {
-  storeUpdateDelete,
+  storeAction,
   storeLoader,
   insertStoreAction,
   billboardLoader,
@@ -29,6 +31,9 @@ import {
   categoriesLoader,
   categoryAction,
   categoryLoader,
+  sizeAction,
+  sizesLoader,
+  sizeLoader,
 } from './lib/react-router-dom';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -52,7 +57,7 @@ const router = createBrowserRouter([
             path: 'settings',
             element: <StoreSettingsPage />,
             loader: storeLoader,
-            action: storeUpdateDelete,
+            action: storeAction,
           },
           {
             path: 'billboards',
@@ -85,6 +90,23 @@ const router = createBrowserRouter([
                 element: <CategoryPage />,
                 loader: categoryLoader,
                 action: categoryAction,
+              },
+            ],
+          },
+          {
+            path: 'sizes',
+            loader: sizesLoader,
+            id: 'sizes',
+            children: [
+              {
+                index: true,
+                element: <SizesPage />,
+              },
+              {
+                path: ':sizeId',
+                element: <SizePage />,
+                loader: sizeLoader,
+                action: sizeAction,
               },
             ],
           },
