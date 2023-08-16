@@ -4,16 +4,16 @@ import { Button } from '../ui/button';
 import Heading from '../ui/Heading';
 import { Separator } from '../ui/separator';
 import { DataTable } from '../ui/dataTable';
-import { sizesColumns } from './SizesColumns';
+import { colorsColumns } from './ColorsColumns';
 
-const Sizes = ({ sizes }) => {
+const Colors = ({ colors }) => {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Sizes (${sizes?.length})`}
-          description="Manage sizes of your store"
+          title={`Colors (${colors?.length})`}
+          description="Manage colors of your store"
         />
         <Button onClick={() => navigate('new')}>
           <Plus
@@ -25,11 +25,11 @@ const Sizes = ({ sizes }) => {
       </div>
       <Separator />
       <DataTable
-        data={sizes}
-        columns={sizesColumns}
+        data={colors}
+        columns={colorsColumns}
         searchKey="name"
       />
     </>
   );
 };
-export default Sizes;
+export default Colors;

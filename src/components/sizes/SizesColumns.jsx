@@ -61,7 +61,7 @@ export const sizesColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen } = useSelector((state) => state.alertModal);
+      const { isOpen, id } = useSelector((state) => state.alertModal);
 
       const oncopy = (id) => {
         navigator.clipboard.writeText(id);
@@ -70,7 +70,7 @@ export const sizesColumns = [
 
       const onConfirm = () => {
         fetcher.submit(
-          { sizeId: action.id },
+          { sizeId: id },
           {
             method: 'DELETE',
             action: 'sizeId',
@@ -108,7 +108,9 @@ export const sizesColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal())}>
+                onClick={() =>
+                  dispatch(alertModalActions.openModal(action.id))
+                }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

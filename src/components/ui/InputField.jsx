@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from './form';
 
-const InputField = ({ control, disabled, placeholder, name, title }) => (
+const InputField = ({ control, disabled, placeholder, name, title,...props }) => (
   <FormField
     control={control}
     name={name}
@@ -19,6 +19,7 @@ const InputField = ({ control, disabled, placeholder, name, title }) => (
             placeholder={placeholder}
             disabled={disabled}
             {...field}
+            {...props}
           />
         </FormControl>
         <FormMessage />

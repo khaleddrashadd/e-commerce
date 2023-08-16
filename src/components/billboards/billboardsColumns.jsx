@@ -26,8 +26,7 @@ export const billboardsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-      >
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Label
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
@@ -51,16 +50,16 @@ export const billboardsColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen } = useSelector(state => state.alertModal);
+      const { isOpen, id } = useSelector((state) => state.alertModal);
 
-      const oncopy = id => {
+      const oncopy = (id) => {
         navigator.clipboard.writeText(id);
         toast.success('Billboard id copied to clipboard');
       };
 
       const onConfirm = () => {
         fetcher.submit(
-          { billboardId: action.id },
+          { billboardId: id },
           {
             method: 'DELETE',
             action: 'billboardId',
@@ -98,7 +97,9 @@ export const billboardsColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal())}>
+                onClick={() =>
+                  dispatch(alertModalActions.openModal(action.id))
+                }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

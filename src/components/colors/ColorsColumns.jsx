@@ -20,7 +20,7 @@ import {
 import AlertModal from '../Modals/AlertModal';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
-export const categoriesColumns = [
+export const colorsColumns = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
@@ -33,12 +33,12 @@ export const categoriesColumns = [
     ),
   },
   {
-    accessorKey: 'billboardLabel',
+    accessorKey: 'value',
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-        Billboard
+        Value
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -61,19 +61,18 @@ export const categoriesColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen,id } = useSelector((state) => state.alertModal);
+      const { isOpen, id } = useSelector((state) => state.alertModal);
 
       const oncopy = (id) => {
         navigator.clipboard.writeText(id);
-        toast.success('Category id copied to clipboard');
+        toast.success('Color id copied to clipboard');
       };
-
       const onConfirm = () => {
         fetcher.submit(
-          { categoryId: id },
+          { colorId: id },
           {
             method: 'DELETE',
-            action: 'categoryId',
+            action: 'colorId',
           }
         );
         dispatch(alertModalActions.closeModal());
@@ -108,7 +107,9 @@ export const categoriesColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal(action.id))}>
+                onClick={() =>
+                  dispatch(alertModalActions.openModal(action.id))
+                }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

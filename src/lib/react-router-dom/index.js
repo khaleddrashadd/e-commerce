@@ -10,6 +10,9 @@ import { categoryLoader } from './loaders/category-loader';
 import { sizeAction } from './actions/size-action';
 import { sizesLoader } from './loaders/sizes-loader';
 import { sizeLoader } from './loaders/size-loader';
+import { colorsLoader } from './loaders/colors-loader';
+import { colorAction } from './actions/color-action';
+import { colorLoader } from './loaders/color-loader';
 
 export {
   storeLoader,
@@ -19,9 +22,12 @@ export {
   categoryLoader,
   sizesLoader,
   sizeLoader,
+  colorsLoader,
+  colorLoader,
   storeAction,
   insertStoreAction,
   billboardAction,
   categoryAction,
   sizeAction,
+  colorAction,
 };

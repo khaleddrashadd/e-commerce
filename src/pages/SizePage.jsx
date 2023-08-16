@@ -3,7 +3,6 @@ import { SizesForm } from '../components/sizes';
 
 const SizePage = () => {
   const sizeData = useLoaderData();
-  console.log(sizeData);
   return (
     <div className="flex flex-col gap-4 p-8 pt-6">
       <SizesForm size={sizeData} />
