@@ -43,7 +43,9 @@ export function DataTable({ columns, data, searchKey }) {
         <Input
           placeholder="Search for billboards."
           value={table.getColumn(searchKey)?.getFilterValue() ?? ''}
-          onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
+          onChange={(event) =>
+            table.getColumn(searchKey)?.setFilterValue(event.target.value)
+          }
           className="max-w-sm"
         />
       </div>
@@ -56,9 +58,9 @@ export function DataTable({ columns, data, searchKey }) {
                   {header.isPlaceholder
                     ? null
                     : flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                 </TableHead>
               ))}
             </TableRow>
@@ -69,8 +71,7 @@ export function DataTable({ columns, data, searchKey }) {
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && 'selected'}
-              >
+                data-state={row.getIsSelected() && 'selected'}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -82,8 +83,7 @@ export function DataTable({ columns, data, searchKey }) {
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center"
-              >
+                className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>
@@ -95,16 +95,14 @@ export function DataTable({ columns, data, searchKey }) {
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
+          disabled={!table.getCanPreviousPage()}>
           Previous
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
+          disabled={!table.getCanNextPage()}>
           Next
         </Button>
       </div>

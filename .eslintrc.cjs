@@ -8,12 +8,13 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'plugin:prettier/recommended',
     'airbnb',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh', 'import'],
+  plugins: ['react-refresh', 'import', 'prettier'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',

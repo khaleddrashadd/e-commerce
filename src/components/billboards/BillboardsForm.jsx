@@ -24,8 +24,8 @@ import InputField from '../ui/InputField';
 import { Separator } from '@/components/ui/Separator';
 
 const schema = z.object({
-  label: z.string().trim().nonempty(),
-  imageUrl: z.string().trim().nonempty(),
+  label: z.string().trim().nonempty({message: 'Label is required'}),
+  imageUrl: z.string().trim().nonempty({message: 'Image is required'}),
 });
 
 const BillboardsForm = ({ billboard }) => {
@@ -72,7 +72,7 @@ const BillboardsForm = ({ billboard }) => {
         isOpen={isOpen}
         onClose={() => dispatch(alertModalActions.closeModal())}
         onConfirm={onDelete}
-        isLoading={fetcher.state === 'submitting'}
+        isLoading={fetcher.state !== 'idle'}
       />
       <div className="flex items-center justify-between">
         <Heading
@@ -83,9 +83,8 @@ const BillboardsForm = ({ billboard }) => {
           <Button
             variant="destructive"
             size="icon"
-            disabled={fetcher.state === 'submitting'}
-            onClick={() => dispatch(alertModalActions.openModal())}
-          >
+            disabled={fetcher.state !== 'idle'}
+            onClick={() => dispatch(alertModalActions.openModal())}>
             <Trash className="h-4 w-4" />
           </Button>
         )}
@@ -95,8 +94,7 @@ const BillboardsForm = ({ billboard }) => {
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+            className="space-y-8">
             <FormField
               control={methods.control}
               name="imageUrl"
@@ -110,7 +108,7 @@ const BillboardsForm = ({ billboard }) => {
                       value={field.value ? [field.value] : []}
                       onChange={(url) => field.onChange(url)}
                       onRemove={(path) => onRemoveImage(path, field)}
-                      disabled={fetcher.state === 'submitting'}
+                      disabled={fetcher.state !== 'idle'}
                     />
                   </FormControl>
                   <FormMessage />
@@ -119,7 +117,7 @@ const BillboardsForm = ({ billboard }) => {
             />
             <InputField
               control={methods.control}
-              disabled={fetcher.state === 'submitting'}
+              disabled={fetcher.state !== 'idle'}
               placeholder="Billboard label"
               name="label"
               title="Label"
@@ -127,8 +125,7 @@ const BillboardsForm = ({ billboard }) => {
 
             <Button
               type="submit"
-              disabled={fetcher.state === 'submitting'}
-            >
+              disabled={fetcher.state !== 'idle'}>
               {action}
             </Button>
           </form>

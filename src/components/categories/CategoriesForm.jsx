@@ -16,10 +16,10 @@ import SelectField from '../ui/SelectField';
 import { Separator } from '@/components/ui/Separator';
 
 const schema = z.object({
-  name: z.string().trim().nonempty(),
-  billboardId: z.string({
-    required_error: 'Please select a billboard.',
-  }).trim().nonempty(),
+  name: z.string().trim().nonempty({ message: 'Name is required.' }),
+  billboardId: z.string().trim().nonempty({
+    message: 'Billboard is required.',
+  }),
 });
 
 const CategoriesForm = ({ category }) => {
@@ -64,7 +64,7 @@ const CategoriesForm = ({ category }) => {
         isOpen={isOpen}
         onClose={() => dispatch(alertModalActions.closeModal())}
         onConfirm={onDelete}
-        isLoading={fetcher.state === 'submitting'}
+        isLoading={fetcher.state !== 'idle'}
       />
       <div className="flex items-center justify-between">
         <Heading
@@ -75,9 +75,8 @@ const CategoriesForm = ({ category }) => {
           <Button
             variant="destructive"
             size="icon"
-            disabled={fetcher.state === 'submitting'}
-            onClick={() => dispatch(alertModalActions.openModal())}
-          >
+            disabled={fetcher.state !== 'idle'}
+            onClick={() => dispatch(alertModalActions.openModal())}>
             <Trash className="h-4 w-4" />
           </Button>
         )}
@@ -87,18 +86,17 @@ const CategoriesForm = ({ category }) => {
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+            className="space-y-8">
             <InputField
               control={methods.control}
-              disabled={fetcher.state === 'submitting'}
+              disabled={fetcher.state !== 'idle'}
               placeholder="Category name"
               name="name"
               title="Name"
             />
             <SelectField
               control={methods.control}
-              disabled={fetcher.state === 'submitting'}
+              disabled={fetcher.state !== 'idle'}
               placeholder="Select a billboard"
               name="billboardId"
               title="Billboard"
@@ -106,8 +104,7 @@ const CategoriesForm = ({ category }) => {
             />
             <Button
               type="submit"
-              disabled={fetcher.state === 'submitting'}
-            >
+              disabled={fetcher.state !== 'idle'}>
               {action}
             </Button>
           </form>

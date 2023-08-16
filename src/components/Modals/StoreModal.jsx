@@ -13,13 +13,13 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/Input';
-import { Button } from '../ui/Button';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 import { storeModalActions } from '../../redux/slices/store-modal-slice';
 import { useDispatch } from 'react-redux';
 
 const schema = z.object({
-  storeName: z.string().trim().nonempty(),
+  storeName: z.string().trim().nonempty({ message: 'Store name is required' }),
 });
 
 const StoreModal = ({ isOpen, onClose }) => {
@@ -35,7 +35,7 @@ const StoreModal = ({ isOpen, onClose }) => {
 
   const fetcher = useFetcher();
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     fetcher.submit(
       {
         ...data,
@@ -68,7 +68,7 @@ const StoreModal = ({ isOpen, onClose }) => {
                         {...field}
                         name="storeName"
                         type="text"
-                        disabled={fetcher.state === 'submitting'}
+                        disabled={fetcher.state !== 'idle'}
                       />
                     </FormControl>
                     <FormMessage />
@@ -79,13 +79,13 @@ const StoreModal = ({ isOpen, onClose }) => {
                 <Button
                   variant="outline"
                   type="button"
-                  disabled={fetcher.state === 'submitting'}
+                  disabled={fetcher.state !== 'idle'}
                   onClick={onClose}>
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  disabled={fetcher.state === 'submitting'}>
+                  disabled={fetcher.state !== 'idle'}>
                   Continue
                 </Button>
               </div>

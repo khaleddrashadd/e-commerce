@@ -76,6 +76,9 @@ module.exports = {
       serif: ['Merriweather', 'serif'],
       mono: ['JetBrains Mono', 'monospace'],
     },
+    borderWidth: {
+      important: '6px !important',
+    },
   },
   plugins: [require('tailwindcss-animate')],
 };

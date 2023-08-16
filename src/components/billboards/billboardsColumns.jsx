@@ -75,7 +75,7 @@ export const billboardsColumns = [
             isOpen={isOpen}
             onClose={() => dispatch(alertModalActions.closeModal())}
             onConfirm={onConfirm}
-            isLoading={fetcher.state === 'submitting'}
+            isLoading={fetcher.state !== 'idle'}
           />
           <DropdownMenu>
             <DropdownMenuTrigger>

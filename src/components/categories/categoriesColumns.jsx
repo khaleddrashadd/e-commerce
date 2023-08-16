@@ -26,8 +26,7 @@ export const categoriesColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-      >
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Name
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
@@ -38,8 +37,7 @@ export const categoriesColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-      >
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Billboard
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
@@ -50,8 +48,7 @@ export const categoriesColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-      >
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Date
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
@@ -77,7 +74,7 @@ export const categoriesColumns = [
           {
             method: 'DELETE',
             action: 'categoryId',
-          },
+          }
         );
         dispatch(alertModalActions.closeModal());
       };
@@ -88,7 +85,7 @@ export const categoriesColumns = [
             isOpen={isOpen}
             onClose={() => dispatch(alertModalActions.closeModal())}
             onConfirm={onConfirm}
-            isLoading={fetcher.state === 'submitting'}
+            isLoading={fetcher.state !== 'idle'}
           />
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -111,8 +108,7 @@ export const categoriesColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal())}
-              >
+                onClick={() => dispatch(alertModalActions.openModal())}>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

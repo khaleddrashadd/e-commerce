@@ -1,5 +1,5 @@
 import { Trash } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/button';
 import Heading from '../ui/Heading';
 import { Separator } from '@/components/ui/Separator';
 import * as z from 'zod';
@@ -14,20 +14,20 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/Input';
+import { Input } from '../ui/input';
 import { useFetcher } from 'react-router-dom';
 import AlertModal from '../Modals/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
 const schema = z.object({
-  name: z.string().trim().nonempty(),
+  name: z.string().trim().nonempty({ message: 'Name is required' }),
 });
 
 const SettingsForm = ({ store }) => {
   const fetcher = useFetcher();
   const dispatch = useDispatch();
-  const { isOpen } = useSelector(state => state.alertModal);
+  const { isOpen } = useSelector((state) => state.alertModal);
 
   const methods = useForm({
     resolver: zodResolver(schema),
@@ -42,8 +42,8 @@ const SettingsForm = ({ store }) => {
     dispatch(alertModalActions.closeModal());
   };
 
-  const onSubmit = data => {
-        console.log(data, 'bill form');
+  const onSubmit = (data) => {
+    console.log(data, 'bill form');
 
     fetcher.submit(data, { method: 'PATCH' });
   };
@@ -63,7 +63,7 @@ const SettingsForm = ({ store }) => {
         <Button
           variant="destructive"
           size="icon"
-          disabled={fetcher.state === 'submitting'}
+          disabled={fetcher.state !== 'idle'}
           onClick={() => dispatch(alertModalActions.openModal())}>
           <Trash className="h-4 w-4" />
         </Button>
@@ -83,7 +83,7 @@ const SettingsForm = ({ store }) => {
                   <FormControl>
                     <Input
                       placeholder="Store name"
-                      disabled={fetcher.state === 'submitting'}
+                      disabled={fetcher.state !== 'idle'}
                       {...field}
                     />
                   </FormControl>
@@ -93,7 +93,7 @@ const SettingsForm = ({ store }) => {
             />
             <Button
               type="submit"
-              disabled={fetcher.state === 'submitting'}>
+              disabled={fetcher.state !== 'idle'}>
               Save changes
             </Button>
           </form>
