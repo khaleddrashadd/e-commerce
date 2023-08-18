@@ -2,14 +2,17 @@ import { UserButton } from '@clerk/clerk-react';
 import MainNav from './MainNav';
 import { ComboboxDemo } from './StoreSwitcher';
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase/Config';
+import { supabase } from '@/lib/Dashboard/supabase/Config';
 import { toast } from 'react-hot-toast';
 
-const Navbar = ({userId}) => {
+const Navbar = ({ userId }) => {
   const [stores, setStores] = useState([]);
   useEffect(() => {
     const getStore = async () => {
-      const { data: storesData, error } = await supabase.from('store').select().eq('userId',userId);
+      const { data: storesData, error } = await supabase
+        .from('store')
+        .select()
+        .eq('userId', userId);
       if (error) return toast.error(error.message || 'Something went wrong');
       setStores(storesData);
     };

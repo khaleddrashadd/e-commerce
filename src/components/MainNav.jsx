@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { getRoutes } from '../data/routes';
+import { getRoutes } from '@/data/Dashboard/routes';
 
 const MainNav = () => {
   const { storeId } = useParams();
