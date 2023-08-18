@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isOpen: false,
   id: '',
+  itemImageUrl: '',
+  itemImagesUrl:[],
 };
 
 const alertModalSlice = createSlice({
@@ -11,7 +13,9 @@ const alertModalSlice = createSlice({
   reducers: {
     openModal(state, action) {
       state.isOpen = true;
-      state.id = action.payload;
+      state.id = action.payload?.itemId;
+      state.itemImageUrl = action.payload?.itemImageUrl;
+      state.itemImagesUrl = action.payload?.itemImagesUrl;
     },
     closeModal(state) {
       state.isOpen = false;

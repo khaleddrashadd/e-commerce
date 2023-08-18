@@ -28,6 +28,7 @@ const Colors = ({ colors }) => {
         data={colors}
         columns={colorsColumns}
         searchKey="name"
+        tableName="colors"
       />
     </>
   );

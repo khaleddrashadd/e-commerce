@@ -13,6 +13,9 @@ import { sizeLoader } from './loaders/size-loader';
 import { colorsLoader } from './loaders/colors-loader';
 import { colorAction } from './actions/color-action';
 import { colorLoader } from './loaders/color-loader';
+import { productsLoader } from './loaders/products-loader';
+import { productAction } from './actions/product-action';
+import { productLoader } from './loaders/product-loader';
 
 export {
   storeLoader,
@@ -24,10 +27,13 @@ export {
   sizeLoader,
   colorsLoader,
   colorLoader,
+  productsLoader,
+  productLoader,
   storeAction,
   insertStoreAction,
   billboardAction,
   categoryAction,
   sizeAction,
   colorAction,
+  productAction,
 };

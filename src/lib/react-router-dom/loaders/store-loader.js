@@ -2,10 +2,9 @@ import { supabase } from '../../supabase/Config';
 import { redirect } from 'react-router-dom';
 
 export const storeLoader = async ({ params: { storeId } }) => {
-
   const { data: store } = await supabase
     .from('store')
-    .select()
+    .select('*,category(*),size(*),color(*)')
     .eq('id', storeId)
     .limit(1)
     .single();

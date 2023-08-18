@@ -10,7 +10,7 @@ import { Form } from '../ui/form';
 import AlertModal from '../Modals/AlertModal';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 import Heading from '../ui/Heading';
-import { Button } from '../ui/button';
+import { Button } from '../ui/Button';
 import InputField from '../ui/InputField';
 import SelectField from '../ui/SelectField';
 import { Separator } from '@/components/ui/Separator';

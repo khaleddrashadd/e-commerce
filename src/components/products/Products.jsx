@@ -4,16 +4,16 @@ import { Button } from '../ui/button';
 import Heading from '../ui/Heading';
 import { Separator } from '../ui/separator';
 import { DataTable } from '../ui/dataTable';
-import { sizesColumns } from './SizesColumns';
+import { productsColumns } from './ProductsColumns';
 
-const Sizes = ({ sizes }) => {
+const Products = ({ product=[] }) => {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Sizes (${sizes?.length})`}
-          description="Manage sizes of your store"
+          title={`Product (${product?.length})`}
+          description="Manage product of your store"
         />
         <Button onClick={() => navigate('new')}>
           <Plus
@@ -25,12 +25,12 @@ const Sizes = ({ sizes }) => {
       </div>
       <Separator />
       <DataTable
-        data={sizes}
-        columns={sizesColumns}
+        data={product}
+        columns={productsColumns}
         searchKey="name"
-        tableName="sizes"
+        tableName="products"
       />
     </>
   );
 };
-export default Sizes;
+export default Products;

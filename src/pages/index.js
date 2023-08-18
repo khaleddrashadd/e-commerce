@@ -3,12 +3,14 @@ import BillboardsPage from './BillboardsPage';
 import CategoriesPage from './CategoriesPage';
 import ColorPage from './ColorPage';
 import ColorsPage from './ColorsPage';
+import ProductsPage from './ProductsPage';
 import HomePage from './HomePage';
 import SizePage from './SizePage';
 import SizesPage from './SizesPage';
 import StorePage from './StorePage';
 import StoreSettingsPage from './StoreSettingsPage';
 import CategoryPage from './categoryPage';
+import ProductPage from './ProductPage';
 
 export {
   HomePage,
@@ -22,4 +24,6 @@ export {
   SizePage,
   ColorsPage,
   ColorPage,
+  ProductsPage,
+  ProductPage,
 };

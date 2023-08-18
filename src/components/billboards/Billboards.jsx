@@ -27,7 +27,9 @@ const Billboards = ({ billboards }) => {
       <DataTable
         data={billboards}
         columns={billboardsColumns}
-        searchKey="label"
+        searchKey="name"
+        tableName='billboards'
+
       />
     </>
   );

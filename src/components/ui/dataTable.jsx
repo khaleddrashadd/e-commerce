@@ -9,7 +9,7 @@ import {
 
 import { useState } from 'react';
 import { Input } from './input';
-import { Button } from './button';
+import { Button } from './Button';
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-export function DataTable({ columns, data, searchKey }) {
+export function DataTable({ columns, data, searchKey,tableName }) {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState();
   const table = useReactTable({
@@ -40,7 +40,7 @@ export function DataTable({ columns, data, searchKey }) {
   return (
     <div className="flex flex-col gap-4 py-4">
       <Input
-        placeholder="Search for billboards."
+        placeholder={`Search for ${tableName}.`}
         value={table.getColumn(searchKey)?.getFilterValue() ?? ''}
         onChange={(event) =>
           table.getColumn(searchKey)?.setFilterValue(event.target.value)

@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { useFetcher, useNavigate } from 'react-router-dom';
-import { Button } from '../ui/button';
+import { Button } from '../ui/Button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,7 +20,7 @@ import {
 import AlertModal from '../Modals/AlertModal';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
-export const categoriesColumns = [
+export const productsColumns = [
   {
     accessorKey: 'name',
     header: ({ column }) => (
@@ -33,12 +33,67 @@ export const categoriesColumns = [
     ),
   },
   {
-    accessorKey: 'billboardLabel',
+    accessorKey: 'isArchived',
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-        Billboard
+        Archieved
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'isFeatured',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Featured
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'price',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'category',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Category
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'size',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Size
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'color',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Color
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -61,19 +116,21 @@ export const categoriesColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen,id } = useSelector((state) => state.alertModal);
+      const { isOpen, id, itemImagesUrl } = useSelector(
+        (state) => state.alertModal
+      );
 
       const oncopy = (id) => {
         navigator.clipboard.writeText(id);
-        toast.success('Category id copied to clipboard');
+        toast.success('Product id copied to clipboard');
       };
-
       const onConfirm = () => {
+        console.log(itemImagesUrl);
         fetcher.submit(
-          { categoryId: id },
+          { productId: id, imagesUrl: itemImagesUrl },
           {
             method: 'DELETE',
-            action: 'categoryId',
+            action: 'productId',
           }
         );
         dispatch(alertModalActions.closeModal());
@@ -108,7 +165,14 @@ export const categoriesColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal({itemId:action.id}))}>
+                onClick={() =>
+                  dispatch(
+                    alertModalActions.openModal({
+                      itemId: action.id,
+                      itemImagesUrl: action.imagesUrl,
+                    })
+                  )
+                }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

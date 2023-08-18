@@ -109,7 +109,7 @@ export const sizesColumns = [
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() =>
-                  dispatch(alertModalActions.openModal(action.id))
+                  dispatch(alertModalActions.openModal({ itemId: action.id }))
                 }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>

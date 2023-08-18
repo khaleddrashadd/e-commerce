@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useFetcher } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
 import {
   Form,
   FormControl,
@@ -17,15 +16,18 @@ import {
 import AlertModal from '../Modals/AlertModal';
 import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 import ImageUpload from '../ui/ImageUpload';
-import { supabase } from '../../lib/supabase/Config';
 import Heading from '../ui/Heading';
-import { Button } from '../ui/button';
+import { Button } from '../ui/Button';
 import InputField from '../ui/InputField';
 import { Separator } from '@/components/ui/Separator';
+import { deleteImageFromDb } from '../../lib/supabase/supbaseUtils';
 
 const schema = z.object({
-  label: z.string().trim().nonempty({message: 'Label is required'}),
-  imageUrl: z.string().trim().nonempty({message: 'Image is required'}),
+  name: z.string().trim().nonempty({ message: 'Label is required' }),
+  imageUrl: z.union([
+    z.string().url({ message: 'Image is required' }),
+    z.array(z.string().url({ message: 'Image is required' })),
+  ]),
 });
 
 const BillboardsForm = ({ billboard }) => {
@@ -40,13 +42,15 @@ const BillboardsForm = ({ billboard }) => {
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      label: billboard?.label || '',
+      name: billboard?.name || '',
       imageUrl: billboard?.imageUrl || '',
     },
   });
 
   const onDelete = () => {
-    fetcher.submit(null, { method: 'DELETE' });
+    const formData = new FormData();
+    formData.append('imageUrl', billboard.imageUrl);
+    fetcher.submit(formData, { method: 'DELETE' });
 
     dispatch(alertModalActions.closeModal());
   };
@@ -56,16 +60,13 @@ const BillboardsForm = ({ billboard }) => {
       fetcher.submit(data, { method: 'POST' });
       return;
     }
+    if (data.imageUrl !== billboard.imageUrl) {
+      deleteImageFromDb(billboard.imageUrl);
+      return fetcher.submit(data, { method: 'PATCH' });
+    }
     fetcher.submit(data, { method: 'PATCH' });
   };
 
-  const onRemoveImage = async (path, field) => {
-    if (!path) return;
-    const { error } = await supabase.storage.from('e-commerce').remove([path]);
-    if (error) return toast.error(error.message || 'Error removing image');
-    toast.success('Image removed');
-    field.onChange('');
-  };
   return (
     <>
       <AlertModal
@@ -107,7 +108,6 @@ const BillboardsForm = ({ billboard }) => {
                     <ImageUpload
                       value={field.value ? [field.value] : []}
                       onChange={(url) => field.onChange(url)}
-                      onRemove={(path) => onRemoveImage(path, field)}
                       disabled={fetcher.state !== 'idle'}
                     />
                   </FormControl>
@@ -119,7 +119,7 @@ const BillboardsForm = ({ billboard }) => {
               control={methods.control}
               disabled={fetcher.state !== 'idle'}
               placeholder="Billboard label"
-              name="label"
+              name="name"
               title="Label"
             />
 

@@ -42,6 +42,18 @@ export const colorsColumns = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
+    cell: ({ row }) => {
+      const action = row.original;
+      return (
+        <div className="flex items-center gap-4">
+          <span>{action.value}</span>
+          <div
+            className="h-8 w-8 rounded-full"
+            style={{ backgroundColor: action.value }}
+          />
+        </div>
+      );
+    },
   },
   {
     accessorKey: 'createdAt',
@@ -108,7 +120,7 @@ export const colorsColumns = [
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() =>
-                  dispatch(alertModalActions.openModal(action.id))
+                  dispatch(alertModalActions.openModal({ itemId: action.id }))
                 }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>

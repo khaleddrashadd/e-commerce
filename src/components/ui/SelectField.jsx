@@ -15,7 +15,7 @@ import {
 } from './form';
 
 const SelectField = ({ data, disabled, placeholder, control, name, title }) => {
-  const formattedData = useMemo(() => data?.sort((a, b) => (a.label > b.label ? 1 : -1)));
+  const formattedData = useMemo(() => data?.sort((a, b) => (a.name > b.name ? 1 : -1)));
   return (
     <FormField
       control={control}
@@ -27,8 +27,7 @@ const SelectField = ({ data, disabled, placeholder, control, name, title }) => {
             disabled={disabled}
             value={field.value}
             onValueChange={field.onChange}
-            defaultValue={field.value}
-          >
+            defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
@@ -38,9 +37,8 @@ const SelectField = ({ data, disabled, placeholder, control, name, title }) => {
               {formattedData?.map((item) => (
                 <SelectItem
                   key={item.id}
-                  value={item.id}
-                >
-                  {item.label}
+                  value={item.id}>
+                  {item.name}
                 </SelectItem>
               ))}
             </SelectContent>

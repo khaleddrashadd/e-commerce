@@ -6,7 +6,8 @@ const BillboardsPage = () => {
   const billboards = useRouteLoaderData('billboards');
   const formattedBillboards = billboards.map((billboard) => ({
     id: billboard.id,
-    label: billboard.label,
+    imageUrl: billboard.imageUrl,
+    name: billboard.name,
     createdAt: format(new Date(billboard.createdAt), 'MMMM do,yyyy'),
   }));
 

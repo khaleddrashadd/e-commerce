@@ -8,7 +8,7 @@ import {
 import { useFetcher, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '../ui/button';
+import { Button } from '../ui/Button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +22,7 @@ import { alertModalActions } from '../../redux/slices/alert-modal-slice';
 
 export const billboardsColumns = [
   {
-    accessorKey: 'label',
+    accessorKey: 'name',
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -32,6 +32,7 @@ export const billboardsColumns = [
       </Button>
     ),
   },
+
   {
     accessorKey: 'createdAt',
     header: ({ column }) => (
@@ -50,16 +51,17 @@ export const billboardsColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen, id } = useSelector((state) => state.alertModal);
+      const { isOpen, id, itemImageUrl } = useSelector(
+        (state) => state.alertModal
+      );
 
       const oncopy = (id) => {
         navigator.clipboard.writeText(id);
         toast.success('Billboard id copied to clipboard');
       };
-
       const onConfirm = () => {
         fetcher.submit(
-          { billboardId: id },
+          { billboardId: id, imageUrl: itemImageUrl },
           {
             method: 'DELETE',
             action: 'billboardId',
@@ -98,7 +100,12 @@ export const billboardsColumns = [
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() =>
-                  dispatch(alertModalActions.openModal(action.id))
+                  dispatch(
+                    alertModalActions.openModal({
+                      itemId: action.id,
+                      itemImageUrl: action.imageUrl,
+                    })
+                  )
                 }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>

@@ -7,7 +7,7 @@ const CategoriesPage = () => {
   const formattedCategories = categories.map((category) => ({
     id: category.id,
     name: category.name,
-    billboardLabel: category.billboard.label,
+    billboardLabel: category.billboard.name,
     createdAt: format(new Date(category.createdAt), 'MMMM do,yyyy'),
   }));
   return (

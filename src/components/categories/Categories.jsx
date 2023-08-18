@@ -28,6 +28,7 @@ const Categories = ({ categories }) => {
         data={categories}
         columns={categoriesColumns}
         searchKey="name"
+        tableName="categories"
       />
     </>
   );

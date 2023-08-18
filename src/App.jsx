@@ -15,6 +15,8 @@ import {
   ColorPage,
   ColorsPage,
   HomePage,
+  ProductPage,
+  ProductsPage,
   SizePage,
   SizesPage,
   StorePage,
@@ -39,6 +41,9 @@ import {
   colorsLoader,
   colorLoader,
   colorAction,
+  productsLoader,
+  productAction,
+  productLoader,
 } from './lib/react-router-dom';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -53,6 +58,7 @@ const router = createBrowserRouter([
         path: ':storeId',
         element: <DashboardLayout />,
         loader: storeLoader,
+        id: 'store',
         children: [
           {
             index: true,
@@ -129,6 +135,23 @@ const router = createBrowserRouter([
                 element: <ColorPage />,
                 loader: colorLoader,
                 action: colorAction,
+              },
+            ],
+          },
+          {
+            path: 'products',
+            id: 'products',
+            loader: productsLoader,
+            children: [
+              {
+                index: true,
+                element: <ProductsPage />,
+              },
+              {
+                path: ':productId',
+                element: <ProductPage />,
+                loader: productLoader,
+                action: productAction,
               },
             ],
           },

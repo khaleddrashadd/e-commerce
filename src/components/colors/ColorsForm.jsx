@@ -12,12 +12,11 @@ import Heading from '../ui/Heading';
 import { Button } from '../ui/button';
 import InputField from '../ui/InputField';
 import { Separator } from '@/components/ui/Separator';
-import { SketchPicker } from 'react-color';
 
 const schema = z.object({
   name: z.string().trim().nonempty({ message: 'Name is required.' }),
   value: z.string().trim().nonempty({
-    message: 'Value is required.',
+    message: 'Color is required.',
   }),
 });
 
@@ -95,7 +94,7 @@ const ColorsForm = ({ color }) => {
               name="value"
               title="Value"
               type="color"
-              className='rounded-full w-20 h-20'
+              className="rounded-full w-20 h-20"
             />
 
             <Button
