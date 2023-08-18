@@ -65,7 +65,6 @@ const ProductsForm = ({ product }) => {
   });
 
   const onDelete = () => {
-    console.log(product.imagesUrl);
     fetcher.submit({ imagesUrl: product.imagesUrl }, { method: 'DELETE' });
 
     dispatch(alertModalActions.closeModal());

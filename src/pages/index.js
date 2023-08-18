@@ -11,6 +11,7 @@ import StorePage from './StorePage';
 import StoreSettingsPage from './StoreSettingsPage';
 import CategoryPage from './categoryPage';
 import ProductPage from './ProductPage';
+import OrdersPage from './OrdersPage';
 
 export {
   HomePage,
@@ -26,4 +27,5 @@ export {
   ColorPage,
   ProductsPage,
   ProductPage,
+  OrdersPage,
 };

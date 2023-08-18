@@ -1,13 +1,14 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from '../../supabase/Config';
 
-export const productsLoader = async ({ params: { storeId } }) => {
-  const { data: products, error } = await supabase
-    .from('product')
-    .select('*,category(*),color(*),size(*)')
+export const ordersLoader = async ({ params: { storeId } }) => {
+  const { data: orders, error } = await supabase
+    .from('order')
+    .select('*,orderItem(*,product(*))')
     .eq('storeId', storeId)
     .order('createdAt', { ascending: false });
 
   if (error) return toast.error(error.message || 'something went wrong');
-  return products;
+
+  return orders;
 };

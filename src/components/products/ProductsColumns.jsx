@@ -125,7 +125,6 @@ export const productsColumns = [
         toast.success('Product id copied to clipboard');
       };
       const onConfirm = () => {
-        console.log(itemImagesUrl);
         fetcher.submit(
           { productId: id, imagesUrl: itemImagesUrl },
           {

@@ -15,6 +15,7 @@ import {
   ColorPage,
   ColorsPage,
   HomePage,
+  OrdersPage,
   ProductPage,
   ProductsPage,
   SizePage,
@@ -44,6 +45,7 @@ import {
   productsLoader,
   productAction,
   productLoader,
+  ordersLoader,
 } from './lib/react-router-dom';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -154,6 +156,11 @@ const router = createBrowserRouter([
                 action: productAction,
               },
             ],
+          },
+          {
+            path: 'orders',
+            element: <OrdersPage />,
+            loader: ordersLoader,
           },
         ],
       },

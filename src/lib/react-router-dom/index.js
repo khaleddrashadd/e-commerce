@@ -16,6 +16,7 @@ import { colorLoader } from './loaders/color-loader';
 import { productsLoader } from './loaders/products-loader';
 import { productAction } from './actions/product-action';
 import { productLoader } from './loaders/product-loader';
+import { ordersLoader } from './loaders/orders-loader';
 
 export {
   storeLoader,
@@ -29,6 +30,7 @@ export {
   colorLoader,
   productsLoader,
   productLoader,
+  ordersLoader,
   storeAction,
   insertStoreAction,
   billboardAction,

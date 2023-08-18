@@ -43,7 +43,6 @@ const SettingsForm = ({ store }) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data, 'bill form');
 
     fetcher.submit(data, { method: 'PATCH' });
   };

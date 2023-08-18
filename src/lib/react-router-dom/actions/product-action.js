@@ -86,7 +86,6 @@ export const productAction = async ({ request, params }) => {
   }
 
   if (method === 'DELETE') {
-    console.log(imagesDataUrl.split(','));
     imagesDataUrl.split(',').forEach((image) => deleteImageFromDb(image));
     const { error } = await supabase
       .from('product')
