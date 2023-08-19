@@ -10,7 +10,7 @@ const Colors = ({ colors }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-col sm:flex-row gap-y-4">
         <Heading
           title={`Colors (${colors?.length})`}
           description="Manage colors of your store"

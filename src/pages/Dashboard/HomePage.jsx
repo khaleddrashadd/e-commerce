@@ -1,6 +1,6 @@
 import StoreModal from '@/components/Modals/StoreModal';
 import { useEffect } from 'react';
-import { supabase } from '@/lib/Dashboard/supabase/Config';
+import { supabase } from '@/lib/supabase/Config';
 import { useAuth } from '@clerk/clerk-react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';

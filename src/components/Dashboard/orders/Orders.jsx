@@ -6,7 +6,7 @@ import { ordersColumns } from './OrdersColumns';
 const Orders = ({ orders }) => {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-col sm:flex-row gap-y-4">
         <Heading
           title={`Orders (${orders?.length})`}
           description="Manage orders of your store"

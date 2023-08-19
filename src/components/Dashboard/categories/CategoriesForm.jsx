@@ -82,7 +82,7 @@ const CategoriesForm = ({ category }) => {
         )}
       </div>
       <Separator />
-      <div className="grid grid-cols-3">
+      <div className="flex max-sm:justify-center">
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}

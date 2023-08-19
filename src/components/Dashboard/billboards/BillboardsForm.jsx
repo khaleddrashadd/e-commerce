@@ -20,7 +20,7 @@ import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/Button';
 import InputField from '@/components/ui/InputField';
 import { Separator } from '@/components/ui/Separator';
-import { deleteImageFromDb } from '@/lib/Dashboard/supabase/supbaseUtils';
+import { deleteImageFromDb } from '@/lib/supabase/supbaseUtils';
 
 const schema = z.object({
   name: z.string().trim().nonempty({ message: 'Label is required' }),
@@ -91,7 +91,7 @@ const BillboardsForm = ({ billboard }) => {
         )}
       </div>
       <Separator />
-      <div className="grid grid-cols-3">
+      <div className="flex max-sm:justify-center">
         <Form {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}

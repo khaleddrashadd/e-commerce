@@ -10,7 +10,7 @@ const Categories = ({ categories }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-col sm:flex-row gap-y-4">
         <Heading
           title={`Categories (${categories?.length})`}
           description="Manage categories of your store"

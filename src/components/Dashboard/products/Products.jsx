@@ -10,7 +10,7 @@ const Products = ({ product = [] }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-col sm:flex-row gap-y-4">
         <Heading
           title={`Product (${product?.length})`}
           description="Manage product of your store"

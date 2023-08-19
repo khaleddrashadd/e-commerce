@@ -125,7 +125,7 @@ const ProductsForm = ({ product }) => {
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-3 gap-6 my-8">
+            <div className="flex max-sm:justify-center flex-col gap-y-4 mb-4">
               <InputField
                 control={methods.control}
                 disabled={fetcher.state !== 'idle'}

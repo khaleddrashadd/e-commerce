@@ -2,7 +2,7 @@ import { ImagePlus, Trash } from 'lucide-react';
 import { Button } from './Button';
 import { Input } from './input';
 import { Label } from './label';
-import { deleteImageFromDb } from '@/lib/Dashboard/supabase/supbaseUtils';
+import { deleteImageFromDb } from '@/lib/supabase/supbaseUtils';
 
 const ImageUpload = ({ disabled, onChange, value, multiple }) => {
   const onUpload = async (e) => {
