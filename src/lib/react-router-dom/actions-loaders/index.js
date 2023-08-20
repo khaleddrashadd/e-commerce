@@ -17,6 +17,7 @@ import { productsLoader } from './loaders/products-loader';
 import { productAction } from './actions/product-action';
 import { productLoader } from './loaders/product-loader';
 import { ordersLoader } from './loaders/orders-loader';
+import productsLoaderUser from './loaders/products-loader-user';
 
 export {
   storeLoader,
@@ -31,6 +32,7 @@ export {
   productsLoader,
   productLoader,
   ordersLoader,
+  productsLoaderUser,
   storeAction,
   insertStoreAction,
   billboardAction,

@@ -1,5 +1,8 @@
 import { StoreLayout } from '@/Layouts/Store';
-import { categoriesLoader } from '@/lib/react-router-dom/actions-loaders/loaders/categories-loader';
+import {
+  categoriesLoader,
+  productsLoaderUser,
+} from '@/lib/react-router-dom/actions-loaders';
 import HomePage from '@/pages/Store/HomePage';
 
 const storeRoutes = {
@@ -10,6 +13,7 @@ const storeRoutes = {
     {
       index: true,
       element: <HomePage />,
+      loader:productsLoaderUser
     },
   ],
 };
