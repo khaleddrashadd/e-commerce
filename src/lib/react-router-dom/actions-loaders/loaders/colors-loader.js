@@ -1,7 +1,9 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase/Config';
 
-export const colorsLoader = async ({ params: { storeId } }) => {
+const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
+
+export const colorsLoader = async () => {
   const { data: colors, error } = await supabase
     .from('color')
     .select()

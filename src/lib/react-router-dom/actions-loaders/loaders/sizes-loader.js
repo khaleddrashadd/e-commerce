@@ -1,7 +1,9 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase/Config';
 
-export const sizesLoader = async ({ params: { storeId } }) => {
+const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
+
+export const sizesLoader = async () => {
   const { data: sizes, error } = await supabase
     .from('size')
     .select()

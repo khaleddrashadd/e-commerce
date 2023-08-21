@@ -7,6 +7,8 @@ import BillboardCover from './BillboardCover';
 import ProductCard from './ProductCard';
 import Gallery from './Gallery';
 import Info from './Info';
+import Filter from './Filter';
+import MobileFilters from './MobileFilters';
 
 export {
   Footer,
@@ -17,5 +19,7 @@ export {
   BillboardCover,
   ProductCard,
   Gallery,
-  Info
+  Info,
+  Filter,
+  MobileFilters,
 };
