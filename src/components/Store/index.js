@@ -5,6 +5,8 @@ import NavbarCart from './NavbarCart';
 import ProductsList from './ProductsList';
 import BillboardCover from './BillboardCover';
 import ProductCard from './ProductCard';
+import Gallery from './Gallery';
+import Info from './Info';
 
 export {
   Footer,
@@ -14,4 +16,6 @@ export {
   ProductsList,
   BillboardCover,
   ProductCard,
+  Gallery,
+  Info
 };

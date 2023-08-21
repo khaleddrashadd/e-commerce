@@ -6,7 +6,7 @@ export const productLoader = async ({ params: { productId } }) => {
 
   const { data: product, error } = await supabase
     .from('product')
-    .select()
+    .select('*,size(*),category(*),color(*)')
     .eq('id', productId)
     .limit(1)
     .single();

@@ -2,7 +2,6 @@ import EmptyState from '@/components/ui/EmptyState';
 import {ProductCard} from '@/components/Store';
 
 const ProductsList = ({ title, items }) => {
-  console.log(items);
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>

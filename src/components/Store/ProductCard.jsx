@@ -1,10 +1,13 @@
 import { Button } from '@/components/ui/Button';
 import Currency from '@/components/ui/Currency';
 import { Expand, ShoppingCart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ item }) => {
+  const navigate = useNavigate();
   return (
     <div
+      onClick={() => navigate(`/product/${item?.id}`)}
       key={item.id}
       className="flex flex-col gap-y-4 group cursor-pointer border p-3 overflow-hidden rounded-xl">
       <div className="aspect-square rounded-xl bg-gray-100 relative">
