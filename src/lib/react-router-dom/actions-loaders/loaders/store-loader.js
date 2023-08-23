@@ -5,7 +5,7 @@ export const storeLoader = async () => {
   const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const { data: store } = await supabase
     .from('store')
-    .select('*,category(*),size(*),color(*)')
+    .select('*,category(*),size(*,category(*)),color(*,category(*))')
     .eq('id', storeId)
     .limit(1)
     .single();

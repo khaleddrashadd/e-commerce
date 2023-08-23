@@ -1,13 +1,12 @@
 import Container from '@/components/ui/Container';
-import { ProductsList, Gallery } from '@/components/Store';
+import { ProductsList, Gallery, Info } from '@/components/Store';
 import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
-import { Info } from '@/components/Store';
 
 const ProductPage = () => {
   const product = useLoaderData();
   const products = useRouteLoaderData('relatedProducts');
   const suggestedProducts = products?.filter(
-    (item) => item.categoryId === product.categoryId
+    (item) => item.categoryId === product.categoryId && item.id !== product.id
   );
   return (
     <Container>

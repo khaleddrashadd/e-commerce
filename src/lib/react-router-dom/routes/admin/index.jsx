@@ -34,6 +34,7 @@ const adminRoutes = {
   path: '/admin',
   element: <DashboardLayout />,
   loader: storeLoader,
+  id: 'store',
   children: [
     {
       index: true,

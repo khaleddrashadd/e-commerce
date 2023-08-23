@@ -6,7 +6,7 @@ export const sizeLoader = async ({ params: { sizeId } }) => {
 
   const { data: size, error } = await supabase
     .from('size')
-    .select()
+    .select('*,category(*)')
     .eq('id', sizeId)
     .limit(1)
     .single();

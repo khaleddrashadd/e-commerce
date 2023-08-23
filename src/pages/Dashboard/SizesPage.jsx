@@ -8,6 +8,7 @@ const SizesPage = () => {
     id: size.id,
     name: size.name,
     value: size.value,
+    category: size.category.name,
     createdAt: format(new Date(size.createdAt), 'MMMM do,yyyy'),
   }));
   return (

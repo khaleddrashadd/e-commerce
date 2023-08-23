@@ -9,6 +9,7 @@ export const sizeAction = async ({ request, params }) => {
   const name = data.get('name');
   const value = data.get('value');
   const id = data.get('sizeId');
+  const categoryId = data.get('categoryId');
   const sizeId = params.sizeId !== 'sizeId' ? params.sizeId : id;
 
   if (method === 'POST') {
@@ -18,6 +19,7 @@ export const sizeAction = async ({ request, params }) => {
         name,
         value,
         storeId,
+        categoryId,
       })
       .select()
       .single();
@@ -32,6 +34,7 @@ export const sizeAction = async ({ request, params }) => {
       .update({
         name,
         value,
+        categoryId,
       })
       .eq('id', sizeId)
       .select()

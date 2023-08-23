@@ -6,7 +6,7 @@ export const colorLoader = async ({ params: { colorId } }) => {
 
   const { data: color, error } = await supabase
     .from('color')
-    .select()
+    .select('*,category(*)')
     .eq('id', colorId)
     .limit(1)
     .single();

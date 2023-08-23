@@ -20,6 +20,10 @@ const Filter = ({ data, name, valueKey }) => {
     setSearchParams(query);
   };
 
+  const dataExist = data?.length !== 0;
+
+  if (!dataExist) return null;
+
   return (
     <div className="mb-8">
       <h3 className="text-lg font-semibold">{name}</h3>

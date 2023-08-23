@@ -9,6 +9,8 @@ export const colorAction = async ({ request, params }) => {
   const name = data.get('name');
   const value = data.get('value');
   const id = data.get('colorId');
+  const categoryId = data.get('categoryId');
+
   const colorId = params.colorId !== 'colorId' ? params.colorId : id;
 
   if (method === 'POST') {
@@ -18,6 +20,7 @@ export const colorAction = async ({ request, params }) => {
         name,
         value,
         storeId,
+        categoryId,
       })
       .select()
       .single();
@@ -32,6 +35,7 @@ export const colorAction = async ({ request, params }) => {
       .update({
         name,
         value,
+        categoryId,
       })
       .eq('id', colorId)
       .select()

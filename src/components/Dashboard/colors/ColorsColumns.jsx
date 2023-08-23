@@ -36,8 +36,8 @@ export const colorsColumns = [
     accessorKey: 'value',
     header: ({ column }) => (
       <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+      variant="ghost"
+      onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Value
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
@@ -50,10 +50,21 @@ export const colorsColumns = [
           <div
             className="h-8 w-8 rounded-full"
             style={{ backgroundColor: action.value }}
-          />
+            />
         </div>
       );
     },
+  },
+  {
+    accessorKey: 'category',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Category
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
     accessorKey: 'createdAt',

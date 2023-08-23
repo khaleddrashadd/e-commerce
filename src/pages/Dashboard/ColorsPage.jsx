@@ -4,10 +4,12 @@ import { Colors } from '@/components/Dashboard/colors';
 
 const ColorsPage = () => {
   const colors = useRouteLoaderData('colors');
-  const formattedColors = colors.map((color) => ({
+  console.log(colors);
+  const formattedColors = colors?.map((color) => ({
     id: color.id,
     name: color.name,
     value: color.value,
+    category: color.category.name,
     createdAt: format(new Date(color.createdAt), 'MMMM do,yyyy'),
   }));
   return (

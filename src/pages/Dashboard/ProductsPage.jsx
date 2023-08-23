@@ -4,18 +4,18 @@ import { Products } from '@/components/Dashboard/products';
 
 const ProductsPage = () => {
   const products = useRouteLoaderData('products');
-  const formattedProducts = products?.map((products) => ({
-    id: products.id,
-    name: products.name,
-    color: products.color.name,
-    size: products.size.name,
-    price: products.price,
-    category: products.category.name,
-    isFeatured: products.isFeatured,
-    isArchived: products.isArchived,
-    imagesUrl: products.imagesUrl,
-    quantity: products.quantity,
-    createdAt: format(new Date(products.createdAt), 'MMMM do,yyyy'),
+  const formattedProducts = products?.map((product) => ({
+    id: product.id,
+    name: product.name,
+    color: product.color.name,
+    size: product.size.name,
+    price: product.price,
+    category: product.category.name,
+    isFeatured: product.isFeatured,
+    isArchived: product.isArchived,
+    imagesUrl: product.imagesUrl,
+    quantity: product.quantity,
+    createdAt: format(new Date(product.createdAt), 'MMMM do,yyyy'),
   }));
   return (
     <div className="flex flex-col gap-4 pt-6 p-8">

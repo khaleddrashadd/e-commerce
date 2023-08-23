@@ -6,7 +6,7 @@ export const colorsLoader = async () => {
   const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const { data: colors, error } = await supabase
     .from('color')
-    .select()
+    .select('*,category(*)')
     .eq('storeId', storeId)
     .order('createdAt', { ascending: false });
 

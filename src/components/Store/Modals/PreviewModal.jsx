@@ -7,7 +7,6 @@ import { openPreviewModal } from '@/redux/slices/preview-modal-slice';
 const PreviewModal = () => {
   const {previewData,isOpen} = useSelector((state) => state.previewModal);
   const dispatch = useDispatch();
-  console.log(previewData);
   const onClose = () => {
     dispatch(openPreviewModal.closePreviewModal());}
   return (

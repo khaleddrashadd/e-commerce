@@ -17,15 +17,19 @@ const CategoryPage = () => {
   const [searchParams] = useSearchParams();
   const products = useRouteLoaderData('filteredProducts');
   const store = useLoaderData();
-  
-  const { size, color } = store;
+
+  const sizes = store.size.filter((item) => item.category.id === categoryId);
+  const colors = store.color.filter((item) => item.category.id === categoryId);
 
   const [{ description }] = store.category.filter(
     (item) => item.id === categoryId
   );
-
   const sizeId = searchParams.get('sizeId');
   const colorId = searchParams.get('colorId');
+
+  const currentCategoryProducts = products.filter(
+    (product) => product.categoryId === categoryId
+  );
 
   const filteredProducts = products.filter((product) => {
     if (!sizeId && !colorId) return true;
@@ -49,46 +53,47 @@ const CategoryPage = () => {
         />
       </BillboardCover>
       <div className="px-4 sm:px-6 lg:px-8 pb-24 font-urbanist">
-        <div className=" flex items-start lg:items-center lg:gap-x-10 flex-col lg:flex-row gap-4">
-          <MobileFilters
-            size={size}
-            color={color}
-            variant={!colorId && !sizeId ? 'outline' : 'default'}
-          />
-          <div className="hidden lg:block flex-shrink-0">
-            <Filter
-              valueKey="sizeId"
-              data={size}
-              name="Sizes"
+        {currentCategoryProducts.length !== 0 ? (
+          <div className=" flex items-start lg:items-center lg:gap-x-10 flex-col lg:flex-row gap-4">
+            <MobileFilters
+              size={sizes}
+              color={colors}
+              variant={!colorId && !sizeId ? 'outline' : 'default'}
             />
-            <Filter
-              valueKey="colorId"
-              data={color}
-              name="Colors"
-            />
-          </div>
-          {filteredProducts?.length === 0 && (
-            <div className="mx-auto">
-              <EmptyState
-                title="No results"
-                subtitle="ry changing or removing some of your filters"
-                label="Clear all filters"
-                showReset
-                onClick={() => navigate(location.pathname)}
+            <div className="hidden lg:block flex-shrink-0">
+              <Filter
+                valueKey="sizeId"
+                data={sizes}
+                name="Sizes"
+              />
+              <Filter
+                valueKey="colorId"
+                data={colors}
+                name="Colors"
               />
             </div>
-          )}
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid gap-4">
-              {filteredProducts?.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  item={product}
-                />
-              ))}
+            <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid gap-4">
+                {currentCategoryProducts?.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    item={product}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="mx-auto">
+            <EmptyState
+              title="No results"
+              subtitle="ry changing or removing some of your filters"
+              label="Clear all filters"
+              showReset
+              onClick={() => navigate(location.pathname)}
+            />
+          </div>
+        )}
       </div>
     </Container>
   );

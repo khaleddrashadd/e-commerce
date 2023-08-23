@@ -3,7 +3,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useFetcher } from 'react-router-dom';
+import { useFetcher, useRouteLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@/components/ui/form';
 import { AlertModal } from '@/components/Dashboard/Modals';
@@ -11,12 +11,16 @@ import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/button';
 import InputField from '@/components/ui/InputField';
+import SelectField from '@/components/ui/SelectField';
 import { Separator } from '@/components/ui/Separator';
 
 const schema = z.object({
   name: z.string().trim().nonempty({ message: 'Name is required.' }),
   value: z.string().trim().nonempty({
     message: 'Color is required.',
+  }),
+  categoryId: z.string().trim().nonempty({
+    message: 'Category is required.',
   }),
 });
 
@@ -34,8 +38,10 @@ const ColorsForm = ({ color }) => {
     defaultValues: {
       name: color?.name || '',
       value: color?.value || '',
+      categoryId: color?.categoryId || '',
     },
   });
+  const { category } = useRouteLoaderData('store');
 
   const onDelete = () => {
     fetcher.submit(null, { method: 'DELETE' });
@@ -80,6 +86,14 @@ const ColorsForm = ({ color }) => {
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
             className="space-y-8">
+            <SelectField
+              control={methods.control}
+              disabled={fetcher.state !== 'idle'}
+              placeholder="Select a category"
+              name="categoryId"
+              title="Category"
+              data={category}
+            />
             <InputField
               control={methods.control}
               disabled={fetcher.state !== 'idle'}
@@ -96,7 +110,6 @@ const ColorsForm = ({ color }) => {
               type="color"
               className="rounded-full w-20 h-20"
             />
-
             <Button
               type="submit"
               disabled={fetcher.state !== 'idle'}>
