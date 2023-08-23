@@ -47,8 +47,8 @@ export function DataTable({ columns, data, searchKey,tableName }) {
         }
         className="max-w-sm"
       />
-      <div className="rounded-md border">
-        <div className="flex items-center py-4">
+      <div className="rounded-md border w-full">
+        <div className="flex items-center py-4 w-full">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (

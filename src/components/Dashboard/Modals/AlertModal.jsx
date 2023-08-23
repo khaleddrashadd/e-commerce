@@ -1,5 +1,5 @@
-import { Button } from '../ui/Button';
-import Modal from '../ui/Modal';
+import { Button } from '@/components/ui/Button';
+import Modal from '@/components/ui/Modal';
 
 const AlertModal = ({ onConfirm, onClose, isOpen, isLoading }) => {
   return (

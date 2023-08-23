@@ -1,26 +1,32 @@
 import Container from '@/components/ui/Container';
 import EmptyState from '@/components/ui/EmptyState';
-import { BillboardCover } from '@/components/Store';
-import { Filter } from '@/components/Store';
-import { ProductCard } from '@/components/Store';
+import { Filter, ProductCard, BillboardCover } from '@/components/Store';
 import MobileFilters from '@/components/Store/MobileFilters';
 import {
   useLoaderData,
   useLocation,
   useNavigate,
+  useParams,
   useRouteLoaderData,
   useSearchParams,
 } from 'react-router-dom';
 const CategoryPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { categoryId } = useParams();
   const [searchParams] = useSearchParams();
-  const { size, color } = useLoaderData();
+  const products = useRouteLoaderData('filteredProducts');
+  const store = useLoaderData();
+  
+  const { size, color } = store;
+
+  const [{ description }] = store.category.filter(
+    (item) => item.id === categoryId
+  );
 
   const sizeId = searchParams.get('sizeId');
   const colorId = searchParams.get('colorId');
 
-  const products = useRouteLoaderData('filteredProducts');
   const filteredProducts = products.filter((product) => {
     if (!sizeId && !colorId) return true;
     if (sizeId && colorId) {
@@ -35,7 +41,7 @@ const CategoryPage = () => {
   });
   return (
     <Container>
-      <BillboardCover title="Explore the glasses Collection">
+      <BillboardCover title={description}>
         <img
           className="w-full object-cover"
           src="/src/assets/billboard-photo2.jpg"

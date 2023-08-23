@@ -7,12 +7,18 @@ const Navbar = () => {
   const categories = useLoaderData();
   return (
     <Container>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between font-urbanist">
         <div className="relative px-2 lg:px-6 flex h-12 items-center">
           <Link
             to="/"
-            className="font-bold text-xl font-urbanist">
-            <p>STORE</p>
+            className="h-full">
+            <div className="h-full">
+              <img
+                src="/mercato.png"
+                alt="logo"
+                className='h-full'
+              />
+            </div>
           </Link>
           <MainNav categories={categories} />
         </div>

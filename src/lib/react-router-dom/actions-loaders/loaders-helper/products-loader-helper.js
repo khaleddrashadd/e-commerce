@@ -1,7 +1,9 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase/Config';
 
-const productsLoaderHelper = async (storeId, query) => {
+
+const productsLoaderHelper = async ( query) => {
+  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const isFeatured = query?.isFeatured;
 
   const productsQuery = supabase

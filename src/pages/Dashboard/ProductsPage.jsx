@@ -14,11 +14,12 @@ const ProductsPage = () => {
     isFeatured: products.isFeatured,
     isArchived: products.isArchived,
     imagesUrl: products.imagesUrl,
+    quantity: products.quantity,
     createdAt: format(new Date(products.createdAt), 'MMMM do,yyyy'),
   }));
   return (
     <div className="flex flex-col gap-4 pt-6 p-8">
-      <Products product={formattedProducts} />
+      <Products products={formattedProducts} />
     </div>
   );
 };

@@ -17,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 
 export const sizesColumns = [

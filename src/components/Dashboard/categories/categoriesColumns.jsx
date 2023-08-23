@@ -17,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 
 export const categoriesColumns = [
@@ -28,17 +28,6 @@ export const categoriesColumns = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Name
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-  },
-  {
-    accessorKey: 'billboardLabel',
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-        Billboard
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -61,7 +50,7 @@ export const categoriesColumns = [
       const navigate = useNavigate();
       const fetcher = useFetcher();
       const dispatch = useDispatch();
-      const { isOpen,id } = useSelector((state) => state.alertModal);
+      const { isOpen, id } = useSelector((state) => state.alertModal);
 
       const oncopy = (id) => {
         navigator.clipboard.writeText(id);
@@ -108,7 +97,9 @@ export const categoriesColumns = [
                 </div>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => dispatch(alertModalActions.openModal({itemId:action.id}))}>
+                onClick={() =>
+                  dispatch(alertModalActions.openModal({ itemId: action.id }))
+                }>
                 <div className="flex items-center gap-2">
                   <Trash size={16} /> <span>Delete</span>
                 </div>

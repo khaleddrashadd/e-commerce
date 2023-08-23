@@ -3,11 +3,11 @@ import { redirect } from 'react-router-dom';
 import { supabase } from '@/lib/supabase/Config';
 
 export const sizeAction = async ({ request, params }) => {
+  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const method = await request.method;
   const data = await request.formData();
   const name = data.get('name');
   const value = data.get('value');
-  const { storeId } = params;
   const id = data.get('sizeId');
   const sizeId = params.sizeId !== 'sizeId' ? params.sizeId : id;
 
@@ -24,7 +24,7 @@ export const sizeAction = async ({ request, params }) => {
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Size created successfully');
 
-    return redirect(`/admin/${storeId}/sizes`);
+    return redirect(`/admin/sizes`);
   }
   if (method === 'PATCH') {
     const { error } = await supabase
@@ -38,17 +38,14 @@ export const sizeAction = async ({ request, params }) => {
       .single();
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Size updated successfully');
-    return redirect(`/admin/${storeId}/sizes`);
+    return redirect(`/admin/sizes`);
   }
 
   if (method === 'DELETE') {
-    const { error } = await supabase
-      .from('size')
-      .delete()
-      .eq('id', sizeId);
+    const { error } = await supabase.from('size').delete().eq('id', sizeId);
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Size deleted successfully');
-    return redirect(`/admin/${storeId}/sizes`);
+    return redirect(`/admin/sizes`);
   }
 
   return null;

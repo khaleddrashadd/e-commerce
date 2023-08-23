@@ -19,7 +19,7 @@ const ImageUpload = ({ disabled, onChange, value, multiple }) => {
   };
   return (
     <div>
-      <div className="wb-4 flex items-center gap-4">
+      <div className="mb-4 flex flex-col gap-4">
         {value.map((url) => (
           <div
             key={url}
@@ -35,7 +35,7 @@ const ImageUpload = ({ disabled, onChange, value, multiple }) => {
             </div>
             <img
               src={url}
-              alt="billboard image"
+              alt="product image"
               className="object-cover"
             />
           </div>

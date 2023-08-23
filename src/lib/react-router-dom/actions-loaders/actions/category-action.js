@@ -3,42 +3,44 @@ import { redirect } from 'react-router-dom';
 import { supabase } from '@/lib/supabase/Config';
 
 export const categoryAction = async ({ request, params }) => {
+  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
+
   const method = await request.method;
   const data = await request.formData();
   const name = data.get('name');
-  const billboardId = data.get('billboardId');
-  const { storeId } = params;
+  const description = data.get('description');
   const id = data.get('categoryId');
-  const categoryId = params.categoryId !== 'categoryId' ? params.categoryId : id;
+  const categoryId =
+    params.categoryId !== 'categoryId' ? params.categoryId : id;
 
   if (method === 'POST') {
     const { error } = await supabase
       .from('category')
       .insert({
         name,
-        billboardId,
         storeId,
+        description,
       })
       .select()
       .single();
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Category created successfully');
 
-    return redirect(`/admin/${storeId}/categories`);
+    return redirect(`/admin/categories`);
   }
   if (method === 'PATCH') {
     const { error } = await supabase
       .from('category')
       .update({
         name,
-        billboardId,
+        description,
       })
       .eq('id', categoryId)
       .select()
       .single();
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Category updated successfully');
-    return redirect(`/admin/${storeId}/categories`);
+    return redirect(`/admin/categories`);
   }
 
   if (method === 'DELETE') {
@@ -48,7 +50,7 @@ export const categoryAction = async ({ request, params }) => {
       .eq('id', categoryId);
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Category deleted successfully');
-    return redirect(`/admin/${storeId}/categories`);
+    return redirect(`/admin/categories`);
   }
 
   return null;

@@ -4,10 +4,11 @@ import { Categories } from '@/components/Dashboard/categories';
 
 const CategoriesPage = () => {
   const categories = useRouteLoaderData('categories');
+
   const formattedCategories = categories.map((category) => ({
     id: category.id,
     name: category.name,
-    billboardLabel: category.billboard.name,
+    description: category.description,
     createdAt: format(new Date(category.createdAt), 'MMMM do,yyyy'),
   }));
   return (

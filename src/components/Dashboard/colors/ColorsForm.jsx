@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useFetcher } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@/components/ui/form';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/button';

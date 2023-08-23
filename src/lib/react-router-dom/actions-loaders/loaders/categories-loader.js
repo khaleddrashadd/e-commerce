@@ -1,10 +1,10 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from '@/lib/supabase/Config';
-const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
 export const categoriesLoader = async () => {
+  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const { data: categories, error } = await supabase
     .from('category')
-    .select('*,billboard(*)')
+    .select()
     .eq('storeId', storeId)
     .order('createdAt', { ascending: false });
 

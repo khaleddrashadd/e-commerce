@@ -1,7 +1,6 @@
 import productsLoaderHelper from '../loaders-helper/products-loader-helper';
 
 const productsLoaderUser = async () => {
-  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
-  return await productsLoaderHelper(storeId, { isFeatured: true });
+  return await productsLoaderHelper( { isFeatured: true });
 };
 export default productsLoaderUser;

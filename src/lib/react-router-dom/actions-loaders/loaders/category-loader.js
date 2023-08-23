@@ -6,7 +6,7 @@ export const categoryLoader = async ({ params: { categoryId } }) => {
 
   const { data: category, error } = await supabase
     .from('category')
-    .select('*, billboard(*)')
+    .select()
     .eq('id', categoryId)
     .limit(1)
     .single();

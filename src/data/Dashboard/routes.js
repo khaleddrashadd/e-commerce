@@ -1,36 +1,28 @@
-export const getRoutes = storeId => {
+export const getRoutes = () => {
   return [
     {
-      to: `/admin/${storeId}`,
+      to: '/admin',
       label: 'Overview',
     },
     {
-      to: `/admin/${storeId}/billboards`,
-      label: 'Billboards',
-    },
-    {
-      to: `/admin/${storeId}/categories`,
+      to: '/admin/categories',
       label: 'Categories',
     },
     {
-      to: `/admin/${storeId}/sizes`,
+      to: '/admin/sizes',
       label: 'Sizes',
     },
     {
-      to: `/admin/${storeId}/colors`,
+      to: '/admin/colors',
       label: 'Colors',
     },
     {
-      to: `/admin/${storeId}/products`,
+      to: '/admin/products',
       label: 'Products',
     },
     {
-      to: `/admin/${storeId}/orders`,
+      to: '/admin/orders',
       label: 'Orders',
-    },
-    {
-      to: `/admin/${storeId}/settings`,
-      label: 'Settings',
     },
   ];
 };

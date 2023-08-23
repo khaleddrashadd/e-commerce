@@ -4,7 +4,6 @@ import {
   productsLoaderUser,
   productLoader,
   storeLoader,
-  colorsLoader,
 } from '@/lib/react-router-dom/actions-loaders';
 import { HomePage, ProductPage, CategoryPage } from '@/pages/Store/';
 

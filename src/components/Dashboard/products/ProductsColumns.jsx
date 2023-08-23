@@ -17,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 
 export const productsColumns = [
@@ -26,6 +26,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Name
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -37,6 +38,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Archieved
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -48,6 +50,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Featured
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -59,8 +62,21 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+  },
+  {
+    accessorKey: 'quantity',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="p-0"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        Quantity
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
@@ -70,6 +86,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Category
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -81,6 +98,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Size
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -92,6 +110,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Color
         <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -103,6 +122,7 @@ export const productsColumns = [
     header: ({ column }) => (
       <Button
         variant="ghost"
+        className="p-0"
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
         Date
         <ArrowUpDown className="ml-2 h-4 w-4" />

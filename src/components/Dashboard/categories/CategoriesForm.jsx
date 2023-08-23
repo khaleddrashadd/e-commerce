@@ -2,23 +2,21 @@ import { Trash } from 'lucide-react';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { useFetcher } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { Form } from '@/components/ui/form';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/Button';
 import InputField from '@/components/ui/InputField';
-import SelectField from '@/components/ui/SelectField';
 import { Separator } from '@/components/ui/Separator';
+import TextAreaField from '@/components/ui/TextAreaField';
 
 const schema = z.object({
   name: z.string().trim().nonempty({ message: 'Name is required.' }),
-  billboardId: z.string().trim().nonempty({
-    message: 'Billboard is required.',
+  description: z.string().trim().nonempty({
+    message: 'Description is required.',
   }),
 });
 
@@ -35,7 +33,7 @@ const CategoriesForm = ({ category }) => {
     resolver: zodResolver(schema),
     defaultValues: {
       name: category?.name || '',
-      billboardId: category?.billboardId || '',
+      description: category?.description || '',
     },
   });
 
@@ -53,10 +51,6 @@ const CategoriesForm = ({ category }) => {
     fetcher.submit(data, { method: 'PATCH' });
   };
 
-  useEffect(() => {
-    if (fetcher.state !== 'idle' || fetcher.data) return;
-    fetcher.load('../../billboards');
-  }, [fetcher]);
 
   return (
     <>
@@ -94,13 +88,13 @@ const CategoriesForm = ({ category }) => {
               name="name"
               title="Name"
             />
-            <SelectField
+            <TextAreaField
+              name="description"
               control={methods.control}
               disabled={fetcher.state !== 'idle'}
-              placeholder="Select a billboard"
-              name="billboardId"
-              title="Billboard"
-              data={fetcher.data}
+              placeholder="Add a description"
+              title="Description"
+              maxLength={40}
             />
             <Button
               type="submit"

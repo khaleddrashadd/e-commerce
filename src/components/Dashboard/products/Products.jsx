@@ -6,14 +6,14 @@ import { Separator } from '@/components/ui/Separator';
 import { DataTable } from '@/components/ui/dataTable';
 import { productsColumns } from './ProductsColumns';
 
-const Products = ({ product = [] }) => {
+const Products = ({ products = [] }) => {
   const navigate = useNavigate();
   return (
     <>
       <div className="flex items-center justify-between flex-col sm:flex-row gap-y-4">
         <Heading
-          title={`Product (${product?.length})`}
-          description="Manage product of your store"
+          title={`Product (${products?.length})`}
+          description="Manage products of your store"
         />
         <Button onClick={() => navigate('new')}>
           <Plus
@@ -25,7 +25,7 @@ const Products = ({ product = [] }) => {
       </div>
       <Separator />
       <DataTable
-        data={product}
+        data={products}
         columns={productsColumns}
         searchKey="name"
         tableName="products"

@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import AlertModal from '@/components/Modals/AlertModal';
+import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/Button';
@@ -40,6 +40,12 @@ const schema = z.object({
   sizeId: z.string().nonempty({ message: 'Size is required.' }),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
+  quantity: z.coerce
+    .number()
+    .min(1)
+    .refine((val) => val > 0, {
+      message: 'Price must be greater than 0.',
+    }),
 });
 
 const ProductsForm = ({ product }) => {
@@ -61,6 +67,7 @@ const ProductsForm = ({ product }) => {
       sizeId: product?.sizeId || '',
       isFeatured: product?.isFeatured || false,
       isArchived: product?.isArchived || false,
+      quantity: product?.quantity || 1,
     },
   });
 
@@ -125,13 +132,14 @@ const ProductsForm = ({ product }) => {
                 </FormItem>
               )}
             />
-            <div className="flex max-sm:justify-center flex-col gap-y-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
               <InputField
                 control={methods.control}
                 disabled={fetcher.state !== 'idle'}
                 placeholder="Product name"
                 name="name"
                 title="Name"
+                className=''
               />
               <InputField
                 control={methods.control}
@@ -140,7 +148,16 @@ const ProductsForm = ({ product }) => {
                 name="price"
                 title="Price"
                 type="number"
-                min="0"
+                min="1"
+              />
+              <InputField
+                control={methods.control}
+                disabled={fetcher.state !== 'idle'}
+                placeholder="Product quantity"
+                name="quantity"
+                title="Quantity"
+                type="number"
+                min="1"
               />
               <SelectField
                 control={methods.control}

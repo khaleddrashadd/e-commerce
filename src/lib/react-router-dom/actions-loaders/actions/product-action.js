@@ -2,12 +2,11 @@ import { toast } from 'react-hot-toast';
 import { redirect } from 'react-router-dom';
 import { supabase } from '@/lib/supabase/Config';
 import getImageUrl from '@/utils/getImageUrl';
-import {
-  addImagetodb,
-  deleteImageFromDb,
-} from '@/lib/supabase/supbaseUtils';
+import { addImagetodb, deleteImageFromDb } from '@/lib/supabase/supbaseUtils';
 
 export const productAction = async ({ request, params }) => {
+  const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
+
   const method = await request.method;
   const data = await request.formData();
   const {
@@ -19,9 +18,9 @@ export const productAction = async ({ request, params }) => {
     isArchived,
     sizeId,
     price,
+    quantity,
   } = Object.fromEntries(data.entries());
   const id = data.get('productId');
-  const { storeId } = params;
 
   const productId = params.productId !== 'productId' ? params.productId : id;
 
@@ -44,12 +43,13 @@ export const productAction = async ({ request, params }) => {
         sizeId,
         price,
         storeId,
+        quantity,
       })
       .select()
       .single();
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Product created successfully');
-    return redirect(`/admin/${storeId}/products`);
+    return redirect(`/admin/products`);
   }
 
   if (method === 'PATCH') {
@@ -79,13 +79,14 @@ export const productAction = async ({ request, params }) => {
         isArchived,
         sizeId,
         price,
+        quantity,
       })
       .eq('id', productId)
       .select()
       .single();
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Product updated successfully');
-    return redirect(`/admin/${storeId}/products`);
+    return redirect(`/admin/products`);
   }
 
   if (method === 'DELETE') {
@@ -96,7 +97,7 @@ export const productAction = async ({ request, params }) => {
       .eq('id', productId);
     if (error) return toast.error(error.message || 'something went wrong');
     toast.success('Product deleted successfully');
-    return redirect(`/admin/${storeId}/products`);
+    return redirect(`/admin/products`);
   }
 
   return null;

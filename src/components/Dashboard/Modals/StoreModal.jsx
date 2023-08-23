@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useFetcher } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react';
 
-import Modal from '../ui/Modal';
+import Modal from '@/components/ui/Modal';
 import {
   Form,
   FormControl,
@@ -12,10 +12,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { storeModalActions } from '../../redux/slices/store-modal-slice';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { storeModalActions } from '@/redux/slices/store-modal-slice';
 import { useDispatch } from 'react-redux';
 
 const schema = z.object({
