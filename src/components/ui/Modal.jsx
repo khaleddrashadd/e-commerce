@@ -15,7 +15,7 @@ const Modal = ({ title, description, isOpen, onClose, children }) => {
     <Dialog
       open={isOpen}
       onOpenChange={onChange}>
-      <DialogContent className="bg-red-500">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>

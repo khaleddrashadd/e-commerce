@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/Button';
-import Currency from '@/components/ui/Currency';
-import { Expand, ShoppingCart } from 'lucide-react';
+import { Expand } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { openPreviewModal } from '@/redux/slices/preview-modal-slice';
+import Info from './Info';
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
@@ -15,10 +15,11 @@ const ProductCard = ({ item }) => {
   };
   return (
     <div
-      onClick={() => navigate(`/product/${item?.id}`)}
       key={item.id}
-      className="flex flex-col gap-y-4 group cursor-pointer border p-3 overflow-hidden rounded-xl">
-      <div className="aspect-square rounded-xl bg-gray-100 relative">
+      className="flex flex-col gap-y-4 group border p-3 overflow-hidden rounded-xl">
+      <div
+        className="aspect-square cursor-pointer rounded-xl bg-gray-100 relative"
+        onClick={() => navigate(`/product/${item?.id}`)}>
         <img
           className="aspect-square object-cover w-full h-full rounded-md"
           src={item.imagesUrl[0]}
@@ -38,23 +39,10 @@ const ProductCard = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center">
-        <p className="font-semibold text-lg">{item.name}</p>
-        <p className="font-semibold text-sm text-gray-500">
-          {item?.category.name}
-        </p>
-        <Currency value={item.price} />
-      </div>
-      <Button
-        onClick={() => console.log('add to cart')}
-        variant=""
-        className="rounded-lg transition px-2 flex gap-4">
-        Add to cart
-        <ShoppingCart
-          size={20}
-          className="text-white"
-        />
-      </Button>
+      <Info
+        data={item}
+        variant="card"
+      />
     </div>
   );
 };

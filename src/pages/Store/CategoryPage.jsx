@@ -27,22 +27,23 @@ const CategoryPage = () => {
   const sizeId = searchParams.get('sizeId');
   const colorId = searchParams.get('colorId');
 
-  const currentCategoryProducts = products.filter(
-    (product) => product.categoryId === categoryId
-  );
-
-  const filteredProducts = products.filter((product) => {
-    if (!sizeId && !colorId) return true;
+  const currentCategoryProducts = products.filter((product) => {
+    if (!sizeId && !colorId) return product.categoryId === categoryId;
     if (sizeId && colorId) {
-      return product.sizeId === sizeId && product.colorId === colorId;
+      return (
+        product.categoryId === categoryId &&
+        product.sizeId === sizeId &&
+        product.colorId === colorId
+      );
     }
     if (sizeId) {
-      return product.sizeId === sizeId;
+      return product.categoryId === categoryId && product.sizeId === sizeId;
     }
     if (colorId) {
-      return product.colorId === colorId;
+      return product.categoryId === categoryId && product.colorId === colorId;
     }
   });
+
   return (
     <Container>
       <BillboardCover title={description}>
@@ -73,7 +74,7 @@ const CategoryPage = () => {
               />
             </div>
             <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {currentCategoryProducts?.map((product) => (
                   <ProductCard
                     key={product.id}

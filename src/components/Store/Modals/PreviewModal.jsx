@@ -14,10 +14,10 @@ const PreviewModal = () => {
       description={previewData?.category?.name}
       isOpen={isOpen}
       onClose={onClose}
-      className=""
+      className="h-full"
       title={previewData?.name}>
-      <div className="flex gap-6 items-start justify-around">
-        <div className="w-1/2 h-full">
+      <div className="flex gap-6 items-start">
+        <div className="w-[36%]">
           <Gallery images={previewData?.imagesUrl} />
         </div>
         <Info data={previewData} />

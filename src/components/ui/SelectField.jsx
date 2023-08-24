@@ -14,8 +14,18 @@ import {
   FormMessage,
 } from './form';
 
-const SelectField = ({ data, disabled, placeholder, control, name, title }) => {
-  const formattedData = useMemo(() => data?.sort((a, b) => (a.name > b.name ? 1 : -1)));
+const SelectField = ({
+  data,
+  disabled,
+  placeholder,
+  control,
+  position,
+  name,
+  title,
+}) => {
+  const formattedData = useMemo(() =>
+    data?.sort((a, b) => (a.name > b.name ? 1 : -1))
+  );
   return (
     <FormField
       control={control}
@@ -33,7 +43,7 @@ const SelectField = ({ data, disabled, placeholder, control, name, title }) => {
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent>
+            <SelectContent position={position}>
               {formattedData?.map((item) => (
                 <SelectItem
                   key={item.id}

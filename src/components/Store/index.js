@@ -9,6 +9,7 @@ import Gallery from './Gallery';
 import Info from './Info';
 import Filter from './Filter';
 import MobileFilters from './MobileFilters';
+import CartControl from './CartControl';
 
 export {
   Footer,
@@ -22,4 +23,5 @@ export {
   Info,
   Filter,
   MobileFilters,
+  CartControl,
 };
