@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/Button';
 import { Minus, Plus, Trash } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../redux/slices/cart-slice';
+import {useOutletContext } from 'react-router-dom';
 
 const CartControl = ({ product }) => {
   const dispatch = useDispatch();
+  const isLoading = useOutletContext()
   const { items } = useSelector((state) => state.cart);
 
   const item = items.find((item) => item.id === product.id);
@@ -42,6 +44,7 @@ const CartControl = ({ product }) => {
           <Button
             variant="outline"
             className="rounded-full p-2 aspect-square"
+            disabled={isLoading}
             onClick={onIncrease}>
             <Plus size={22} />
           </Button>
@@ -49,6 +52,7 @@ const CartControl = ({ product }) => {
           <Button
             variant="outline"
             className="rounded-full p-2 aspect-square"
+            disabled={isLoading}
             onClick={onDecrease}>
             <Minus size={22} />
           </Button>
@@ -56,6 +60,7 @@ const CartControl = ({ product }) => {
         <Button
           variant="destructive"
           className="rounded-full p-2 aspect-square"
+          disabled={isLoading}
           onClick={onRemove}>
           <Trash size={22} />
         </Button>

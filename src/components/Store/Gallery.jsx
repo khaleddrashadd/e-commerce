@@ -25,7 +25,7 @@ const Gallery = ({ images }) => {
         ))}
       </TabsList>
       <div className=" object-cover">
-        {images?.map((image, i) => (
+        {images?.slice(0,2).map((image, i) => (
           <TabsContent
             key={image}
             value={image}>

@@ -5,7 +5,7 @@ import {
   productLoader,
   storeLoader,
 } from '@/lib/react-router-dom/actions-loaders';
-import { HomePage, ProductPage, CategoryPage } from '@/pages/Store/';
+import { HomePage, ProductPage, CategoryPage,CartPage } from '@/pages/Store/';
 
 const storeRoutes = {
   path: '/',
@@ -38,6 +38,18 @@ const storeRoutes = {
           index: true,
           element: <CategoryPage />,
           loader: storeLoader,
+        },
+      ],
+    },
+    {
+      path: 'cart',
+      // loader: productsLoaderUser,
+      // id: 'filteredProducts',
+      children: [
+        {
+          index: true,
+          element: <CartPage />,
+          // loader: storeLoader,
         },
       ],
     },

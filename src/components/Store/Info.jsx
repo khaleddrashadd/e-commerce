@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
 import CartControl from './CartControl';
+import { useOutletContext } from 'react-router-dom';
 
 const schema = z.object({
   quantity: z.coerce.number().min(1),
@@ -16,6 +17,7 @@ const schema = z.object({
 
 const Info = ({ data, variant }) => {
   const dispatch = useDispatch();
+  const isLoading = useOutletContext();
 
   const methods = useForm({
     resolver: zodResolver(schema),
@@ -42,6 +44,7 @@ const Info = ({ data, variant }) => {
       total: data?.price * quantity,
     };
     dispatch(cartActions.addToCart(product));
+    // updateCartDb();
   };
   return (
     <Form
@@ -87,11 +90,13 @@ const Info = ({ data, variant }) => {
           title="Quantity"
           position="item-aligned"
           data={options}
+          disabled={isLoading}
         />
         <Button
           className={`${
             variant === 'card' ? 'rounded-lg self-stretch' : 'rounded-full'
           } mt-1 flex items-center gap-2`}
+          // disabled={isLoading}
           onClick={methods.handleSubmit(onSubmit)}>
           Add To Cart
           <ShoppingCart />
