@@ -44,7 +44,6 @@ const Info = ({ data, variant }) => {
       total: data?.price * quantity,
     };
     dispatch(cartActions.addToCart(product));
-    // updateCartDb();
   };
   return (
     <Form

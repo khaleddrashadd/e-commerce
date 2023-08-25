@@ -4,27 +4,29 @@
 
 // import { supabase } from '/lib/supabase/Config';
 
-const KEY = Deno.env.get('VITE_SUPABASE_KEY') as string;
-const URL = Deno.env.get('VITE_SUPABASE_URL') as string;
+const URL = Deno.env.get('_SUPABASE_URL') as string;
+const KEY = Deno.env.get('_SUPABASE_SERVICE_KEY') as string;
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.7.0';
+import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 
 const supabase = createClient(URL, KEY);
 
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
-
 serve(async (req) => {
-  console.log('Hello from Functions!');
-  const { data:cart } = await supabase
-    .from('cart')
-    .select()
-    .eq('id', '67b68991-b95e-4824-8080-7c7982dbb5fc');
-  // const { data, error } = await supabase
-  //   .from('cart')
-  //   .delete()
-  //   .eq('id', '67b68991-b95e-4824-8080-7c7982dbb5fc');
+  const { data } = await supabase.from('cart').select();
+  const expiredCarts = data.filter(
+    (item) => Date.parse(item.expiresAt) < Date.now()
+  );
 
-  return new Response(JSON.stringify(cart, error), {
+  const { error } = await supabase
+    .from('cart')
+    .delete()
+    .in(
+      'id',
+      expiredCarts.map((item) => item.id)
+    );
+
+  return new Response(JSON.stringify(data, error), {
     headers: { 'Content-Type': 'application/json' },
   });
 });

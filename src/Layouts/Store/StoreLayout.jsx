@@ -11,11 +11,12 @@ import { cartActions } from '../../redux/slices/cart-slice';
 
 const StoreLayout = () => {
   const dispatch = useDispatch();
-  const {updateCartDb,isLoading}=useUpdateCartDb();
+  const { updateCartDb, isLoading } = useUpdateCartDb();
   const [cookies, setCookie] = useCookies(['browserId']);
   const { getCartDb } = useUpdateCartDb();
 
   const cart = useSelector((state) => state.cart);
+  console.log(cart.totalPrice);
   useEffect(() => {
     if (cart.changed) {
       updateCartDb(cart);
@@ -31,12 +32,10 @@ const StoreLayout = () => {
       const { cartDb, err } = await getCartDb();
       if (err) return toast.error(err.message);
       if (cartDb.length === 0) return;
-      dispatch(cartActions.replaceCart(cartDb[0]?.cart))
-
+      dispatch(cartActions.replaceCart(cartDb[0]?.cart));
     };
     getCartData();
   }, [cookies.browserId]);
-
 
   return (
     <>

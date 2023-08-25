@@ -1,9 +1,9 @@
 import Heading from './Heading';
 import { Button } from './button';
 
-const EmptyState = ({ title, subtitle, label, showReset, onClick }) => {
+const EmptyState = ({ title, subtitle, label, showReset, onClick, center }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className={`flex flex-col gap-6 ${center && 'mx-auto'}`}>
       <Heading
         center
         title={title}
