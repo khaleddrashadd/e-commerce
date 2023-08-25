@@ -13,7 +13,7 @@ import { productAction } from './actions/product-action';
 import { productLoader } from './loaders/product-loader';
 import { ordersLoader } from './loaders/orders-loader';
 import productsLoaderUser from './loaders/products-loader-user';
-
+import { cartAction } from './actions/cart-action';
 export {
   storeLoader,
   categoriesLoader,
@@ -30,4 +30,5 @@ export {
   sizeAction,
   colorAction,
   productAction,
+  cartAction,
 };

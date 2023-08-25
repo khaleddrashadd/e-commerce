@@ -3,16 +3,17 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
 import { toast } from 'react-hot-toast';
-import { useSearchParams } from 'react-router-dom';
+import { useFetcher, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
+import { supabase } from '../../lib/supabase/Config';
 
 const Summary = () => {
   const [searchParams] = useSearchParams();
+  const fetcher = useFetcher();
   const { items, totalPrice, totalQuantity } = useSelector(
     (state) => state.cart
   );
-  console.log(totalPrice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,10 +26,21 @@ const Summary = () => {
       toast.error('Something went wrong.');
     }
   }, [searchParams]);
-
   const onCheckout = async () => {
     const productIds = items.map((item) => item.id);
-    console.log(productIds);
+    const data = JSON.stringify({
+      productIds,
+      items,
+      totalPrice,
+      totalQuantity,
+    });
+    const {data:response}= await supabase.functions.invoke(
+      'stripe',
+      { body: data },
+      { method: 'POST' }
+    );
+    console.log(response)
+    window.location = response.url;
   };
 
   return (
@@ -46,6 +58,7 @@ const Summary = () => {
         className="w-full mt-6">
         Checkout
       </Button>
+      {/* <PaymentElement /> */}
     </div>
   );
 };

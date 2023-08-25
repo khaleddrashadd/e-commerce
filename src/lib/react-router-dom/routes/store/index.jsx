@@ -4,6 +4,7 @@ import {
   productsLoaderUser,
   productLoader,
   storeLoader,
+  // cartAction,
 } from '@/lib/react-router-dom/actions-loaders';
 import { HomePage, ProductPage, CategoryPage,CartPage } from '@/pages/Store/';
 
@@ -49,6 +50,7 @@ const storeRoutes = {
         {
           index: true,
           element: <CartPage />,
+          // action:cartAction,
           // loader: storeLoader,
         },
       ],
