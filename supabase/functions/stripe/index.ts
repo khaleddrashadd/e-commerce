@@ -1,6 +1,7 @@
 import Stripe from 'https://esm.sh/stripe@10.13.0?target=deno&deno-std=0.132.0&no-check';
 const URL = Deno.env.get('_SUPABASE_URL') as string;
 const KEY = Deno.env.get('_SUPABASE_SERVICE_KEY') as string;
+const STORE_ID = Deno.env.get('_STORE_ID') as string;
 
 const stripe = Stripe(Deno.env.get('_STRIPE_SECRET_KEY') ?? '', {
   httpClient: Stripe.createFetchHttpClient(),
@@ -24,22 +25,18 @@ serve(async (req) => {
     });
   } else {
     const jsonData = await req.json();
-    const { productIds, items, totalPrice, totalQuantity } = jsonData;
-    
-    const { data: products, error } = await supabase
-      .from('product')
-      .select()
-      .in('id', productIds);
+    const { productIds, items, browserId } = jsonData;
 
     const { data: order, error: orderInsertError } = await supabase
       .from('order')
       .insert({
         isPaid: false,
+        storeId: STORE_ID,
       })
-      .select();
-
+      .select()
+      .single();
     const line_items = [];
-    
+
     items.forEach((product) => {
       line_items.push({
         quantity: product.total,
@@ -64,6 +61,9 @@ serve(async (req) => {
       cancel_url: 'http://localhost:3000/cart?canceled=1',
       metadata: {
         orderId: order.id,
+        productIds: productIds.join(','),
+        items: JSON.stringify(items),
+        browserId,
       },
     });
 

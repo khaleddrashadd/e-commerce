@@ -39,7 +39,7 @@ const schema = z.object({
   colorId: z.string().nonempty({ message: 'Color is required.' }),
   sizeId: z.string().nonempty({ message: 'Size is required.' }),
   isFeatured: z.boolean().default(false).optional(),
-  isArchived: z.boolean().default(false).optional(),
+  archived: z.boolean().default(false).optional(),
   quantity: z.coerce
     .number()
     .min(1)
@@ -66,7 +66,7 @@ const ProductsForm = ({ product }) => {
       colorId: product?.colorId || '',
       sizeId: product?.sizeId || '',
       isFeatured: product?.isFeatured || false,
-      isArchived: product?.isArchived || false,
+      archived: product?.archived || false,
       quantity: product?.quantity || 1,
     },
   });
@@ -139,7 +139,7 @@ const ProductsForm = ({ product }) => {
                 placeholder="Product name"
                 name="name"
                 title="Name"
-                className=''
+                className=""
               />
               <InputField
                 control={methods.control}
@@ -193,7 +193,7 @@ const ProductsForm = ({ product }) => {
               <CheckboxField
                 control={methods.control}
                 disabled={fetcher.state !== 'idle'}
-                name="isArchived"
+                name="archived"
                 label="Archived"
                 description="This product will not appear anywhere in the store."
               />

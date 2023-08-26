@@ -12,7 +12,7 @@ const ProductsPage = () => {
     price: product.price,
     category: product.category.name,
     isFeatured: product.isFeatured,
-    isArchived: product.isArchived,
+    archived: product.archived,
     imagesUrl: product.imagesUrl,
     quantity: product.quantity,
     createdAt: format(new Date(product.createdAt), 'MMMM do,yyyy'),

@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase/Config';
 const productsLoaderHelper = async ( query) => {
   const storeId = import.meta.env.VITE_SUPABASE_STORE_ID;
   const isFeatured = query?.isFeatured;
+  const archived = query?.archived;
 
   const productsQuery = supabase
     .from('product')
@@ -13,7 +14,7 @@ const productsLoaderHelper = async ( query) => {
 
   const { data: products, error } = await (isFeatured
     ? productsQuery
-        .eq('isFeatured', isFeatured)
+        .eq('isFeatured', isFeatured).eq('archived', archived)
         .order('createdAt', { ascending: false })
     : productsQuery.order('createdAt', { ascending: false }));
 

@@ -4,7 +4,6 @@ import { Colors } from '@/components/Dashboard/colors';
 
 const ColorsPage = () => {
   const colors = useRouteLoaderData('colors');
-  console.log(colors);
   const formattedColors = colors?.map((color) => ({
     id: color.id,
     name: color.name,

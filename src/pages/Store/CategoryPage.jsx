@@ -16,17 +16,18 @@ const CategoryPage = () => {
   const { categoryId } = useParams();
   const [searchParams] = useSearchParams();
   const products = useRouteLoaderData('filteredProducts');
+  
   const store = useLoaderData();
-
+  
   const sizes = store.size.filter((item) => item.category.id === categoryId);
   const colors = store.color.filter((item) => item.category.id === categoryId);
-
+  
   const [{ description }] = store.category.filter(
     (item) => item.id === categoryId
   );
   const sizeId = searchParams.get('sizeId');
   const colorId = searchParams.get('colorId');
-
+  
   const currentCategoryProducts = products.filter((product) => {
     if (!sizeId && !colorId) return product.categoryId === categoryId;
     if (sizeId && colorId) {
@@ -34,16 +35,16 @@ const CategoryPage = () => {
         product.categoryId === categoryId &&
         product.sizeId === sizeId &&
         product.colorId === colorId
-      );
-    }
-    if (sizeId) {
-      return product.categoryId === categoryId && product.sizeId === sizeId;
+        );
+      }
+      if (sizeId) {
+        return product.categoryId === categoryId && product.sizeId === sizeId;
     }
     if (colorId) {
       return product.categoryId === categoryId && product.colorId === colorId;
     }
   });
-
+  
   return (
     <Container>
       <BillboardCover title={description}>

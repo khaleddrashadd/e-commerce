@@ -8,7 +8,6 @@ import Info from './Info';
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const onPreview = (e) => {
     e.stopPropagation();
     dispatch(openPreviewModal.openPreviewModal(item));

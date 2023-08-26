@@ -34,7 +34,7 @@ export const productsColumns = [
     ),
   },
   {
-    accessorKey: 'isArchived',
+    accessorKey: 'archived',
     header: ({ column }) => (
       <Button
         variant="ghost"

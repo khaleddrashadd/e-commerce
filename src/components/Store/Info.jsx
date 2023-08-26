@@ -1,6 +1,4 @@
 import Currency from '@/components/ui/Currency';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
 import { Form } from '@/components/ui/form';
 import SelectField from '@/components/ui/SelectField';
 import { useForm } from 'react-hook-form';
@@ -17,7 +15,7 @@ const schema = z.object({
 
 const Info = ({ data, variant }) => {
   const dispatch = useDispatch();
-  const isLoading = useOutletContext();
+  const {isLoading} = useOutletContext();
 
   const methods = useForm({
     resolver: zodResolver(schema),
@@ -36,6 +34,7 @@ const Info = ({ data, variant }) => {
     size: data?.size?.name,
     color: data?.color.value,
     image: data?.imagesUrl[0],
+    quantity:data?.quantity,
   };
   const onSubmit = ({ quantity }) => {
     const product = {
@@ -91,16 +90,11 @@ const Info = ({ data, variant }) => {
           data={options}
           disabled={isLoading}
         />
-        <Button
-          className={`${
-            variant === 'card' ? 'rounded-lg self-stretch' : 'rounded-full'
-          } mt-1 flex items-center gap-2`}
-          // disabled={isLoading}
-          onClick={methods.handleSubmit(onSubmit)}>
-          Add To Cart
-          <ShoppingCart />
-        </Button>
-        <CartControl product={formattedProduct} />
+        <CartControl
+          product={formattedProduct}
+          onClick={methods.handleSubmit(onSubmit)}
+          variant={variant}
+        />
       </div>
     </Form>
   );

@@ -23,7 +23,6 @@ export const cartAction = async ({ request }) => {
     .in('id', productIds);
 
   const line_items = [];
-  console.log(products);
   items.forEach((product) => {
     line_items.push({
       quantity: product.total,
@@ -36,7 +35,6 @@ export const cartAction = async ({ request }) => {
       },
     });
   });
-  console.log(line_items);
 
   const { data: order, error: orderInsertError } = await supabase
     .from('order')

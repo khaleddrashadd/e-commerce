@@ -3,10 +3,24 @@ import { useSelector } from 'react-redux';
 import CartItem from '@/components/Store/CartItem';
 import Summary from '../../components/Store/Summary';
 import EmptyState from '@/components/ui/EmptyState';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { useEffect } from 'react';
 const CartPage = () => {
+  const [searchParams] = useSearchParams();
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (searchParams.get('success')) {
+      toast.success('Payment completed.');
+    }
+
+    if (searchParams.get('canceled')) {
+      toast.error('Something went wrong.');
+    }
+  }, [searchParams]);
+
   return (
     <Container>
       <h2 className="text-3xl font-bold text-black">Shopping Cart</h2>
@@ -24,12 +38,13 @@ const CartPage = () => {
               />
             )}
             <ul>
-              {cart.items?.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                />
-              ))}
+              {cart &&
+                cart?.items.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                  />
+                ))}
             </ul>
             {cart?.totalQuantity !== 0 && <Summary />}
           </div>

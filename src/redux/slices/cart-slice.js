@@ -5,6 +5,7 @@ const initialState = {
   totalQuantity: 0,
   totalPrice: 0,
   changed: false,
+  isAvailable: true,
 };
 
 const cartSlice = createSlice({
@@ -36,6 +37,7 @@ const cartSlice = createSlice({
 
     removeFromCart(state, action) {
       state.changed = true;
+      state.isAvailable = true;
       const existingItem = state.items.find(
         (item) => item.id === action.payload
       );
@@ -55,6 +57,7 @@ const cartSlice = createSlice({
 
     removeProductFromCart(state, action) {
       state.changed = true;
+      state.isAvailable = true;
       const existingItem = state.items.find(
         (item) => item.id === action.payload
       );
@@ -67,14 +70,19 @@ const cartSlice = createSlice({
     },
 
     deleteCart(state) {
-      state.items = initialState;
+      state = initialState;
     },
 
     replaceCart(state, action) {
       state.changed = false;
-      state.items = action.payload.items;
-      state.totalQuantity = action.payload.totalQuantity;
-      state.totalPrice = action.payload.totalPrice;
+      state.items = action.payload?.items;
+      state.totalQuantity = action.payload?.totalQuantity;
+      state.totalPrice = action.payload?.totalPrice;
+    },
+
+    changeAvailability(state, action) {
+      state.isAvailable=true;
+      state.isAvailable = action.payload;
     },
   },
 });

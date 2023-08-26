@@ -16,10 +16,15 @@ const StoreLayout = () => {
   const { getCartDb } = useUpdateCartDb();
 
   const cart = useSelector((state) => state.cart);
-  console.log(cart.totalPrice);
   useEffect(() => {
+    if (!cart.isAvailable) return;
+
     if (cart.changed) {
-      updateCartDb(cart);
+      updateCartDb({
+        items: cart.items,
+        totalQuantity: cart.totalQuantity,
+        totalPrice: cart.totalPrice,
+      });
     }
   }, [cart]);
 
@@ -41,7 +46,7 @@ const StoreLayout = () => {
     <>
       <Navbar />
       <PreviewModal />
-      <Outlet context={isLoading} />
+      <Outlet context={{isLoading,browserId:cookies.browserId}} />
       <Footer />
     </>
   );

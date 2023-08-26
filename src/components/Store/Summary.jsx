@@ -1,31 +1,15 @@
-import { useEffect } from 'react';
-
 import { Button } from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
-import { toast } from 'react-hot-toast';
-import { useFetcher, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '@/redux/slices/cart-slice';
+import { useOutletContext } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
 import { supabase } from '../../lib/supabase/Config';
 
 const Summary = () => {
-  const [searchParams] = useSearchParams();
-  const fetcher = useFetcher();
+  const {browserId} = useOutletContext();
   const { items, totalPrice, totalQuantity } = useSelector(
     (state) => state.cart
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (searchParams.get('success')) {
-      toast.success('Payment completed.');
-      dispatch(cartActions.deleteCart());
-    }
-
-    if (searchParams.get('canceled')) {
-      toast.error('Something went wrong.');
-    }
-  }, [searchParams]);
+  
   const onCheckout = async () => {
     const productIds = items.map((item) => item.id);
     const data = JSON.stringify({
@@ -33,13 +17,13 @@ const Summary = () => {
       items,
       totalPrice,
       totalQuantity,
+      browserId
     });
-    const {data:response}= await supabase.functions.invoke(
+    const { data: response } = await supabase.functions.invoke(
       'stripe',
       { body: data },
       { method: 'POST' }
     );
-    console.log(response)
     window.location = response.url;
   };
 
@@ -58,7 +42,6 @@ const Summary = () => {
         className="w-full mt-6">
         Checkout
       </Button>
-      {/* <PaymentElement /> */}
     </div>
   );
 };
