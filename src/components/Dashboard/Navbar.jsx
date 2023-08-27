@@ -9,12 +9,12 @@ const Navbar = () => {
     <header className="border-b">
       <div className="flex h-16 items-center">
         <div className="w-full flex items-center justify-between lg:justify-start">
-          <div>{store.name}</div>
+          <div className="text-xl">{store.name}</div>
           <MainNav />
         </div>
-        <div className='flex flex-1 items-center gap-6'>
-        <ModeToggle />
-          <UserButton afterSignOutUrl="/admin" />
+        <div className="flex flex-1 items-center gap-6">
+          <ModeToggle />
+          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
     </header>

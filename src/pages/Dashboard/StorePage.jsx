@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { formatter } from '@/utils/currency-helper';
 import { OverView } from '@/components/Dashboard';
 import { useRouteLoaderData } from 'react-router-dom';
-import { getGraphData } from '../../utils/getGraphData';
+import { getGraphData } from '@/utils/getGraphData';
 
 const StorePage = () => {
   const storeData = useRouteLoaderData('store');

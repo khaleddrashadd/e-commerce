@@ -20,21 +20,23 @@ const CartItem = ({ item }) => {
         />
       </div>
       <div className="flex justify-between my-4 lg:my-0">
-        <p className="flex-1 text-2xl font-semibold text-black">{item.name}</p>
+        <p className="flex-1 text-2xl font-semibold dark:text-white text-black">
+          {item.name}
+        </p>
       </div>
       <div className="px-4 flex">
         <div className="mt-1 flex text-sm h-fit gap-4">
-          <p className="text-gray-500 border-x p-3">
+          <p className="text-gray-500 dark:text-gray-200 border-x p-3 dark:border-gray-600">
             Quantity: {item.quantity}
           </p>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-200">
             Color:{' '}
             <span
               className="rounded-full h-4 m-1"
               style={{ backgroundColor: item.color, display: 'block' }}
             />
           </p>
-          <p className="ml-4 border-gray-200 border-x p-3 text-gray-500">
+          <p className="ml-4 border-gray-200 dark:border-gray-500 border-x p-3 dark:text-gray-200 text-gray-500">
             Size: {item.size}
           </p>
           <span className="border-r p-2 h-fit">

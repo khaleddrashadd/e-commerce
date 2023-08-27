@@ -1,7 +1,7 @@
 import { toast } from 'react-hot-toast';
 import { supabase } from './Config';
 import { v4 as uuid } from 'uuid';
-import getImagePath from '../../utils/getImagePath';
+import getImagePath from '@/utils/getImagePath';
 
 export const addImagetodb = async (endpoint, imageblobUrl) => {
   const res = await fetch(imageblobUrl);

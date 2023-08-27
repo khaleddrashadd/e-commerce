@@ -1,7 +1,7 @@
 import Container from '@/components/ui/Container';
 import { useSelector } from 'react-redux';
 import CartItem from '@/components/Store/CartItem';
-import Summary from '../../components/Store/Summary';
+import Summary from '@/components/Store/Summary';
 import EmptyState from '@/components/ui/EmptyState';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
@@ -10,7 +10,7 @@ const CartPage = () => {
   const [searchParams] = useSearchParams();
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (searchParams.get('success')) {
       toast.success('Payment completed.');
@@ -23,7 +23,9 @@ const CartPage = () => {
 
   return (
     <Container>
-      <h2 className="text-3xl font-bold text-black">Shopping Cart</h2>
+      <h2 className="text-3xl font-bold text-black dark:text-white">
+        Shopping Cart
+      </h2>
       <div className="px-4 py-16 sm:px-6 lg:px-8 font-urbanist">
         <div className="lg:w-85/12">
           <div className="flex flex-col md:flex-row sm:gap-4 md:gap-6 lg:gap-8">

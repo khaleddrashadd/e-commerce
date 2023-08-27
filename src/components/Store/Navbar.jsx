@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import MainNav from './MainNav';
 import { NavbarCart } from './';
 import { ModeToggle } from '@/components/ui/mode-toggle';
+import { UserButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
   const categories = useLoaderData();
@@ -23,9 +24,10 @@ const Navbar = () => {
           </Link>
           <MainNav categories={categories} />
         </div>
-        <div className='flex items-center gap-6'>
+        <div className="flex items-center gap-6">
           <NavbarCart />
           <ModeToggle />
+          <UserButton afterSignOutUrl="/admin" />
         </div>
       </div>
     </Container>

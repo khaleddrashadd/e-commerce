@@ -1,6 +1,5 @@
 import Modal from '@/components/ui/Modal';
-import Gallery from '../Gallery';
-import Info from '../Info';
+import { Gallery, Info } from '@/components/Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { openPreviewModal } from '@/redux/slices/preview-modal-slice';
 

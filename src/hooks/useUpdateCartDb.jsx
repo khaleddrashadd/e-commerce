@@ -1,5 +1,5 @@
 import { useCookies } from 'react-cookie';
-import { supabase } from '../lib/supabase/Config';
+import { supabase } from '@/lib/supabase/Config';
 import { useState } from 'react';
 
 const useUpdateCartDb = () => {

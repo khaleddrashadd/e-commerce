@@ -1,9 +1,8 @@
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Minus, Plus, Trash } from 'lucide-react';
 
-import { Minus, Plus, Trash } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../redux/slices/cart-slice';
+import { cartActions } from '@/redux/slices/cart-slice';
 import { useOutletContext } from 'react-router-dom';
 import { useEffect } from 'react';
 

@@ -26,7 +26,7 @@ serve(async (req) => {
   } else {
     const jsonData = await req.json();
     const { productIds, items, browserId } = jsonData;
-    
+
     const { data: order, error: orderInsertError } = await supabase
       .from('order')
       .insert({
@@ -36,7 +36,7 @@ serve(async (req) => {
       .select()
       .single();
     const line_items = [];
-    
+
     items.forEach((product) => {
       line_items.push({
         quantity: product.total,
@@ -50,6 +50,12 @@ serve(async (req) => {
       });
     });
 
+    const itemsIdsAndQuantity = items.map((item) => ({
+      id: item.id,
+      quantity: item.quantity,
+    }));
+    console.log(itemsIdsAndQuantity);
+
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
@@ -62,11 +68,11 @@ serve(async (req) => {
       metadata: {
         orderId: order.id,
         productIds: productIds.join(','),
-        items: JSON.stringify(items),
-        browserId
+        items: JSON.stringify(itemsIdsAndQuantity),
+        browserId,
       },
     });
-
+    
     return new Response(JSON.stringify({ url: session.url }), {
       headers: {
         'Content-Type': 'application/json',
