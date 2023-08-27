@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
 import CartControl from './CartControl';
 import { useOutletContext } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const schema = z.object({
   quantity: z.coerce.number().min(1),
@@ -21,19 +22,9 @@ const Info = ({ data, variant }) => {
     resolver: zodResolver(schema),
     defaultValues: { quantity: 1 },
   });
-  let options;
-  options = Array.from({ length: data?.quantity }, (_, i) => {
+  const options = Array.from({ length: data?.quantity }, (_, i) => {
     return { name: i + 1, id: i + 1 };
   });
-  if (items.length > 0) {
-    const item = items.find((item) => item.id === data?.id);
-    options = Array.from(
-      { length: data?.quantity - item?.quantity },
-      (_, i) => {
-        return { name: i + 1, id: i + 1 };
-      }
-    );
-  }
 
   const formattedProduct = {
     id: data?.id,
@@ -46,6 +37,11 @@ const Info = ({ data, variant }) => {
     quantity: data?.quantity,
   };
   const onSubmit = ({ quantity }) => {
+    const item = items.find((item) => item.id === data?.id);
+    if (quantity + item?.quantity > data?.quantity) {
+      toast.error('Quantity is not available');
+      return;
+    }
     const product = {
       ...formattedProduct,
       quantity: quantity,
