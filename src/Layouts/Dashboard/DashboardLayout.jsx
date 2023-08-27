@@ -18,7 +18,6 @@ const DashboardLayout = () => {
   const navigation = useNavigation();
   const { userId } = useAuth();
   const { organizationList, isLoaded } = useOrganizationList();
-  
   const isLoading = navigation.state === 'loading';
 
   const currentOrg =

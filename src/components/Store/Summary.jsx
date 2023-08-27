@@ -21,8 +21,15 @@ const Summary = () => {
     const { data: response } = await supabase.functions.invoke(
       'stripe',
       { body: data },
-      { method: 'POST' }
+      {
+        method: 'POST',
+        headers: {
+          mode: 'no-cors',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
     );
+    console.log(response);
     window.location = response.url;
   };
 

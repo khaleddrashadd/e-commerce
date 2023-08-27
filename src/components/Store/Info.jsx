@@ -4,7 +4,7 @@ import SelectField from '@/components/ui/SelectField';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
 import CartControl from './CartControl';
 import { useOutletContext } from 'react-router-dom';
@@ -15,16 +15,25 @@ const schema = z.object({
 
 const Info = ({ data, variant }) => {
   const dispatch = useDispatch();
-  const {isLoading} = useOutletContext();
-
+  const { items } = useSelector((state) => state.cart);
+  const { isLoading } = useOutletContext();
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: { quantity: 1 },
   });
-
-  const options = Array.from({ length: data?.quantity }, (_, i) => {
+  let options;
+  options = Array.from({ length: data?.quantity }, (_, i) => {
     return { name: i + 1, id: i + 1 };
   });
+  // if (items.length > 0) {
+  //   const item = items.find((item) => item.id === data?.id);
+  //   options = Array.from(
+  //     { length: data?.quantity - item?.quantity },
+  //     (_, i) => {
+  //       return { name: i + 1, id: i + 1 };
+  //     }
+  //   );
+  // }
 
   const formattedProduct = {
     id: data?.id,
@@ -34,7 +43,7 @@ const Info = ({ data, variant }) => {
     size: data?.size?.name,
     color: data?.color.value,
     image: data?.imagesUrl[0],
-    quantity:data?.quantity,
+    quantity: data?.quantity,
   };
   const onSubmit = ({ quantity }) => {
     const product = {

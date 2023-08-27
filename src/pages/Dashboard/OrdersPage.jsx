@@ -5,9 +5,10 @@ import { formatter } from '@/utils/currency-helper';
 
 const OrdersPage = () => {
   const orders = useLoaderData();
-  const formattedorders = orders?.map((order) => ({
+  console.log(orders);
+  const formattedOrders = orders?.map((order) => ({
     id: order.id,
-    product: order.product.name,
+    product: order.orderItem[0]?.product.name||'',
     phone: order.phone,
     address: order.address,
     totalPrice: formatter.format(
@@ -21,7 +22,7 @@ const OrdersPage = () => {
   }));
   return (
     <div className="flex flex-col gap-4 pt-6 p-8">
-      <Orders orders={formattedorders} />
+      <Orders orders={formattedOrders} />
     </div>
   );
 };

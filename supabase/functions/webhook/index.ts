@@ -54,7 +54,6 @@ serve(async (req) => {
       .join(', ');
 
     if (event.type === 'checkout.session.completed') {
-
       const { data: order } = await supabase
         .from('order')
         .update({
@@ -63,9 +62,9 @@ serve(async (req) => {
           phone: session?.customer_details?.phone || '',
         })
         .eq('id', session?.metadata?.orderId)
-        .select();
+        .select()
+        .single();
 
-      const productIds = session?.metadata?.productIds.split(',');
       const items = JSON.parse(session?.metadata?.items);
 
       items.forEach(async (item: any) => {
@@ -78,6 +77,12 @@ serve(async (req) => {
       const browserId = session?.metadata?.browserId;
 
       await supabase.from('cart').delete().eq('browserId', browserId);
+
+      const productIds = session?.metadata?.productIds.split(',');
+      await supabase.rpc('order_item', {
+        item: productIds,
+        order_id: order.id,
+      });
     }
 
     return new Response(null, {
