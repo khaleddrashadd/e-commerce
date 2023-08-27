@@ -1,5 +1,5 @@
 import { ImagePlus, Trash } from 'lucide-react';
-import { Button } from './Button';
+import { Button } from './button';
 import { Input } from './input';
 import { Label } from './label';
 import { deleteImageFromDb } from '@/lib/supabase/supbaseUtils';

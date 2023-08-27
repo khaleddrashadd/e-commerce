@@ -9,7 +9,7 @@ import {
 
 import { useState } from 'react';
 import { Input } from './input';
-import { Button } from './Button';
+import { Button } from './button';
 import {
   Table,
   TableBody,
