@@ -20,7 +20,11 @@ const MainNav = () => {
           key={route.to}
           to={route.to}
           end
-          className="lg:block hidden text-sm font-medium transition hover:text-primary text-muted-foreground">
+          className={({ isActive }) =>
+            isActive
+              ? 'lg:block hidden text-sm font-medium transition hover:text-primary text-white'
+              : 'lg:block hidden text-sm font-medium transition hover:text-primary text-muted-foreground'
+          }>
           {route.label}
         </NavLink>
       ))}
@@ -35,7 +39,11 @@ const MainNav = () => {
                 <NavLink
                   to={route.to}
                   end
-                  className="text-sm font-medium transition hover:text-primary text-muted-foreground">
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-sm font-medium transition hover:text-primary text-white'
+                      : 'text-sm font-medium transition hover:text-primary text-muted-foreground'
+                  }>
                   {route.label}
                 </NavLink>
               </MenubarItem>
