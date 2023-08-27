@@ -1,4 +1,6 @@
 import Container from '@/components/ui/Container';
+import billboardImage from '@/assets/billboard-photo2.jpg';
+
 import EmptyState from '@/components/ui/EmptyState';
 import { Filter, ProductCard, BillboardCover } from '@/components/Store';
 import MobileFilters from '@/components/Store/MobileFilters';
@@ -50,7 +52,7 @@ const CategoryPage = () => {
       <BillboardCover title={description}>
         <img
           className="w-full object-cover"
-          src="../../assets/billboard-photo2.jpg"
+          src={billboardImage}
           alt="billboard photo"
         />
       </BillboardCover>

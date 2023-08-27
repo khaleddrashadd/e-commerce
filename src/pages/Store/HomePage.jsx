@@ -1,5 +1,6 @@
 import { ProductsList, BillboardCover } from '@/components/Store';
 import { useLoaderData } from 'react-router-dom';
+import billboardImage from '@/assets/billboard-photo.jpg';
 
 const HomePage = () => {
   const products = useLoaderData();
@@ -8,7 +9,7 @@ const HomePage = () => {
       <BillboardCover title="Explore the special collection">
         <img
           className="w-full object-cover"
-          src="../../assets/billboard-photo.jpg"
+          src={billboardImage}
           alt="billboard photo"
         />
       </BillboardCover>
