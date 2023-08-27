@@ -1,8 +1,8 @@
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import Heading from '@/components/ui/Heading';
-import { Separator } from '@/components/ui/Separator';
+import { Separator } from '@/components/ui/separator';
 import { DataTable } from '@/components/ui/dataTable';
 import { productsColumns } from './ProductsColumns';
 

@@ -1,5 +1,5 @@
 import Heading from '@/components/ui/Heading';
-import { Separator } from '@/components/ui/Separator';
+import { Separator } from '@/components/ui/separator';
 import { DataTable } from '@/components/ui/dataTable';
 import { ordersColumns } from './OrdersColumns';
 

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import Currency from '@/components/ui/currency';
+import Currency from '@/components/ui/Currency';
 import { useOutletContext } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { supabase } from '@/lib/supabase/Config';

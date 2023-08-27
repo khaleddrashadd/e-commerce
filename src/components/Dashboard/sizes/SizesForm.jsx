@@ -12,7 +12,7 @@ import Heading from '@/components/ui/Heading';
 import { Button } from '@/components/ui/button';
 import InputField from '@/components/ui/InputField';
 import SelectField from '@/components/ui/SelectField';
-import { Separator } from '@/components/ui/Separator';
+import { Separator } from '@/components/ui/separator';
 
 const schema = z.object({
   name: z.string().trim().nonempty({ message: 'Name is required.' }),

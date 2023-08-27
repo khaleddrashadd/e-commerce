@@ -1,6 +1,6 @@
 import { Trash } from 'lucide-react';
 
-import Currency from '@/components/ui/currency';
+import Currency from '@/components/ui/Currency';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
 import { Button } from '@/components/ui/button';

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const Filter = ({ data, name, valueKey }) => {
   const [searchParams, setSearchParams] = useSearchParams();

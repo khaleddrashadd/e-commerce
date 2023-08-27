@@ -8,9 +8,9 @@ import { Form } from '@/components/ui/form';
 import { AlertModal } from '@/components/Dashboard/Modals';
 import { alertModalActions } from '@/redux/slices/alert-modal-slice';
 import Heading from '@/components/ui/Heading';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import InputField from '@/components/ui/InputField';
-import { Separator } from '@/components/ui/Separator';
+import { Separator } from '@/components/ui/separator';
 import TextAreaField from '@/components/ui/TextAreaField';
 
 const schema = z.object({

@@ -6,7 +6,7 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
-} from '@/components/ui/Menubar';
+} from '@/components/ui/menubar';
 import { Menu } from 'lucide-react';
 
 const MainNav = () => {
