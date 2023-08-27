@@ -1,5 +1,5 @@
 import { Outlet, useNavigation } from 'react-router-dom';
-import { Skeleton } from '@/components/ui/Skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Footer, Navbar } from '@/components/Store';
 import { PreviewModal } from '@/components/Store/Modals';
 import { useCookies } from 'react-cookie';
