@@ -50,7 +50,7 @@ const CategoryPage = () => {
       <BillboardCover title={description}>
         <img
           className="w-full object-cover"
-          src="/src/assets/billboard-photo2.jpg"
+          src="../../assets/billboard-photo2.jpg"
           alt="billboard photo"
         />
       </BillboardCover>

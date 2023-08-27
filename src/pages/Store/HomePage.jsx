@@ -8,7 +8,7 @@ const HomePage = () => {
       <BillboardCover title="Explore the special collection">
         <img
           className="w-full object-cover"
-          src="/src/assets/billboard-photo.jpg"
+          src="../../assets/billboard-photo.jpg"
           alt="billboard photo"
         />
       </BillboardCover>
