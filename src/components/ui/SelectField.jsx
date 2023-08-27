@@ -38,7 +38,7 @@ const SelectField = ({
             value={field.value}
             onValueChange={field.onChange}
             defaultValue={field.value}>
-            <FormControl>
+            <FormControl className="dark:bg-gray-700">
               <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>

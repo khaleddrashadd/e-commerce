@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-const MainNav = ({categories}) => {
+const MainNav = ({ categories }) => {
   const routes = categories.map((category) => ({
     to: `/category/${category.id}`,
     label: category.name,
@@ -13,8 +13,8 @@ const MainNav = ({categories}) => {
           key={route.to}
           className={({ isActive }) =>
             isActive
-              ? 'text-black text-sm font-medium font-urbanist'
-              : 'text-sm font-medium font-urbanist transition text-neutral-500 hover:text-black'
+              ? 'text-black dark:text-white text-sm font-medium font-urbanist'
+              : 'text-sm font-medium font-urbanist transition dark:text-neutral-400 dark:hover:text-white text-neutral-500 hover:text-black'
           }
           to={route.to}
           end>

@@ -8,6 +8,7 @@ import storeRoutes from '@/lib/react-router-dom/routes/store';
 import { CookiesProvider } from 'react-cookie';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { ThemeProvider } from './components/ui/theme-provider';
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISH_KEY);
@@ -25,7 +26,11 @@ function App() {
             stripe={stripePromise}
             // options={options}
           >
-            <RouterProvider router={router} />
+            <ThemeProvider
+              defaultTheme="dark"
+              storageKey="vite-ui-theme">
+              <RouterProvider router={router} />
+            </ThemeProvider>
           </Elements>
           <Toaster />
         </Provider>

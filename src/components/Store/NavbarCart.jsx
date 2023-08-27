@@ -11,12 +11,13 @@ const NavbarCart = () => {
   return (
     <Button
       className="flex items-center rounded-full py-2 px-4"
+      variant="outline"
       onClick={() => navigate('/cart')}>
       <ShoppingBag
         size={20}
-        color="white"
+        color="green"
       />
-      <span className="font-medium text-white ml-2">{totalQuantity}</span>
+      <span className="font-medium text-green-600 ml-2">{totalQuantity}</span>
     </Button>
   );
 };

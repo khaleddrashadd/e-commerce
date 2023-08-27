@@ -25,15 +25,15 @@ const Info = ({ data, variant }) => {
   options = Array.from({ length: data?.quantity }, (_, i) => {
     return { name: i + 1, id: i + 1 };
   });
-  // if (items.length > 0) {
-  //   const item = items.find((item) => item.id === data?.id);
-  //   options = Array.from(
-  //     { length: data?.quantity - item?.quantity },
-  //     (_, i) => {
-  //       return { name: i + 1, id: i + 1 };
-  //     }
-  //   );
-  // }
+  if (items.length > 0) {
+    const item = items.find((item) => item.id === data?.id);
+    options = Array.from(
+      { length: data?.quantity - item?.quantity },
+      (_, i) => {
+        return { name: i + 1, id: i + 1 };
+      }
+    );
+  }
 
   const formattedProduct = {
     id: data?.id,
