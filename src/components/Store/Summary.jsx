@@ -1,15 +1,14 @@
 import { Button } from '@/components/ui/button';
 import Currency from '@/components/ui/currency';
 import { useOutletContext } from 'react-router-dom';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { supabase } from '../../lib/supabase/Config';
 
 const Summary = () => {
-  const {browserId} = useOutletContext();
+  const { browserId } = useOutletContext();
   const { items, totalPrice, totalQuantity } = useSelector(
     (state) => state.cart
   );
-  
   const onCheckout = async () => {
     const productIds = items.map((item) => item.id);
     const data = JSON.stringify({
@@ -17,7 +16,7 @@ const Summary = () => {
       items,
       totalPrice,
       totalQuantity,
-      browserId
+      browserId,
     });
     const { data: response } = await supabase.functions.invoke(
       'stripe',

@@ -6,9 +6,9 @@ const useUpdateCartDb = () => {
   const [cookies] = useCookies(['browserId']);
   const [isLoading, setIsLoading] = useState(false);
 
-  if (!cookies.browserId) return null;
-
+  
   const getCartDb = async () => {
+    if (!cookies.browserId) return ;
     setIsLoading(true);
     const { data, error } = await supabase
       .from('cart')
@@ -28,9 +28,6 @@ const useUpdateCartDb = () => {
     }
 
     if (cartDb.length > 0) {
-      /* cart.itemsforeEach(item=>{
-        item.quantity>
-      }) */
       setIsLoading(true);
       const { data, error } = await supabase
         .from('cart')
@@ -58,9 +55,6 @@ const useUpdateCartDb = () => {
       return { data, error: error };
     }
   };
-  const deleteCart = async () => {
-    await supabase.from('cart').delete().eq('browserId', cookies.browserId);
-  };
-  return { updateCartDb, getCartDb, isLoading, deleteCart };
+  return { updateCartDb, getCartDb, isLoading };
 };
 export default useUpdateCartDb;

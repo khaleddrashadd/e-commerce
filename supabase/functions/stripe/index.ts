@@ -26,7 +26,7 @@ serve(async (req) => {
   } else {
     const jsonData = await req.json();
     const { productIds, items, browserId } = jsonData;
-
+    
     const { data: order, error: orderInsertError } = await supabase
       .from('order')
       .insert({
@@ -36,7 +36,7 @@ serve(async (req) => {
       .select()
       .single();
     const line_items = [];
-
+    
     items.forEach((product) => {
       line_items.push({
         quantity: product.total,
@@ -63,7 +63,7 @@ serve(async (req) => {
         orderId: order.id,
         productIds: productIds.join(','),
         items: JSON.stringify(items),
-        browserId,
+        browserId
       },
     });
 
