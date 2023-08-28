@@ -33,8 +33,8 @@ Explore my demo Mercato (e-commerce) app.
 </div>
 <div>
 <h1>ADMIN Dashboard demo Credentrials</h1>
-<h2>E-Mail:demoappecommerce@gmail.com</h2>
-<h2>Password:mercatoapp</h2>
+<h3>E-Mail: (demoappecommerce@gmail.com)</h3>
+<h3>Password: (mercatoapp)</h3>
 </div>
 
 ## Support
