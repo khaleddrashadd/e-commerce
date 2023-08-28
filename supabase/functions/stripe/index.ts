@@ -54,7 +54,6 @@ serve(async (req) => {
       id: item.id,
       quantity: item.quantity,
     }));
-    console.log(itemsIdsAndQuantity);
 
     const session = await stripe.checkout.sessions.create({
       line_items,

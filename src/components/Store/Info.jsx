@@ -14,7 +14,6 @@ const schema = z.object({
 });
 
 const Info = ({ data, variant,isLoading }) => {
-  console.log(isLoading)
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
 

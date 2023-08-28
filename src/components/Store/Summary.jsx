@@ -33,7 +33,6 @@ const Summary = () => {
         },
       }
       );
-      console.log(response);
       window.location = response.url;
     };
 

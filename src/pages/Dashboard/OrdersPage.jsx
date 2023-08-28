@@ -5,7 +5,6 @@ import { formatter } from '@/utils/currency-helper';
 
 const OrdersPage = () => {
   const orders = useLoaderData();
-  console.log(orders);
   const formattedOrders = orders?.map((order) => ({
     id: order.id,
     product: order.orderItem[0]?.product.name||'',
