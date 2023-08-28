@@ -22,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import ImageUpload from '@/components/ui/ImageUpload';
 import SelectField from '@/components/ui/SelectField';
 import CheckboxField from '@/components/ui/CheckboxField';
+import { useState } from 'react';
 
 const schema = z.object({
   name: z.string().nonempty({ message: 'Name is required.' }),
@@ -49,6 +50,7 @@ const schema = z.object({
 });
 
 const ProductsForm = ({ product }) => {
+  const [selectedCategory, setSelectedCategory] = useState('');
   const fetcher = useFetcher();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.alertModal);
@@ -86,6 +88,8 @@ const ProductsForm = ({ product }) => {
   };
 
   const { category, color, size } = useRouteLoaderData('store');
+  const formattedSize = (size.filter((item)=>item.category.id===selectedCategory))
+  const formattedColor = (color.filter((item) => item.category.id === selectedCategory));
 
   return (
     <>
@@ -139,7 +143,6 @@ const ProductsForm = ({ product }) => {
                 placeholder="Product name"
                 name="name"
                 title="Name"
-                className=""
               />
               <InputField
                 control={methods.control}
@@ -166,6 +169,7 @@ const ProductsForm = ({ product }) => {
                 name="categoryId"
                 title="Category"
                 data={category}
+                onChange={(value) => setSelectedCategory(value)}
               />
               <SelectField
                 control={methods.control}
@@ -173,7 +177,7 @@ const ProductsForm = ({ product }) => {
                 placeholder="Select a size"
                 name="sizeId"
                 title="Size"
-                data={size}
+                data={formattedSize}
               />
               <SelectField
                 control={methods.control}
@@ -181,7 +185,7 @@ const ProductsForm = ({ product }) => {
                 placeholder="Select a color"
                 name="colorId"
                 title="Color"
-                data={color}
+                data={formattedColor}
               />
               <CheckboxField
                 control={methods.control}

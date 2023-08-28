@@ -3,12 +3,10 @@ import { ShoppingCart, Minus, Plus, Trash } from 'lucide-react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
-import { useOutletContext } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const CartControl = ({ product, onClick, variant }) => {
+const CartControl = ({ product, onClick, variant, isLoading }) => {
   const dispatch = useDispatch();
-  const {isLoading} = useOutletContext();
   const { items } = useSelector((state) => state.cart);
 
   const item = items.find((item) => item.id === product.id);

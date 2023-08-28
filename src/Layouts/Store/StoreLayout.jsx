@@ -59,7 +59,7 @@ const StoreLayout = () => {
   return (
     <>
       <Navbar />
-      <PreviewModal />
+      <PreviewModal isLoading={isLoading} />
       {routeIsLoading ? (
         loadingSkeleton
       ) : (

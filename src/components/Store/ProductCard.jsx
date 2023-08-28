@@ -1,11 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Expand } from 'lucide-react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { openPreviewModal } from '@/redux/slices/preview-modal-slice';
 import Info from './Info';
 
 const ProductCard = ({ item }) => {
+    const { isLoading } = useOutletContext();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onPreview = (e) => {
@@ -41,6 +42,7 @@ const ProductCard = ({ item }) => {
       <Info
         data={item}
         variant="card"
+        isLoading={isLoading}
       />
     </div>
   );

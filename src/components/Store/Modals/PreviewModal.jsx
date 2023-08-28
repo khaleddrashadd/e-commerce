@@ -3,7 +3,7 @@ import { Gallery, Info } from '@/components/Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { openPreviewModal } from '@/redux/slices/preview-modal-slice';
 
-const PreviewModal = () => {
+const PreviewModal = ({isLoading}) => {
   const {previewData,isOpen} = useSelector((state) => state.previewModal);
   const dispatch = useDispatch();
   const onClose = () => {
@@ -19,7 +19,7 @@ const PreviewModal = () => {
         <div className="w-[36%]">
           <Gallery images={previewData?.imagesUrl} />
         </div>
-        <Info data={previewData} />
+        <Info data={previewData} isLoading={isLoading} />
       </div>
     </Modal>
   );

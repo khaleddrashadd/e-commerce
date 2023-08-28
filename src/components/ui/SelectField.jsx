@@ -22,6 +22,7 @@ const SelectField = ({
   position,
   name,
   title,
+  onChange,
 }) => {
   const formattedData = useMemo(() =>
     data?.sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -36,6 +37,7 @@ const SelectField = ({
           <Select
             disabled={disabled}
             value={field.value}
+            onOpenChange={onChange ? () => onChange(field.value) : () => {}}
             onValueChange={field.onChange}
             defaultValue={field.value}>
             <FormControl className="dark:bg-gray-700">

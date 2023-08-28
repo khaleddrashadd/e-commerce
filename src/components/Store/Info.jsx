@@ -7,17 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '@/redux/slices/cart-slice';
 import CartControl from './CartControl';
-import { useOutletContext } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 const schema = z.object({
   quantity: z.coerce.number().min(1),
 });
 
-const Info = ({ data, variant }) => {
+const Info = ({ data, variant,isLoading }) => {
+  console.log(isLoading)
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
-  const { isLoading } = useOutletContext();
+
   const methods = useForm({
     resolver: zodResolver(schema),
     defaultValues: { quantity: 1 },
@@ -99,6 +99,7 @@ const Info = ({ data, variant }) => {
           product={formattedProduct}
           onClick={methods.handleSubmit(onSubmit)}
           variant={variant}
+          isLoading={isLoading}
         />
       </div>
     </Form>
