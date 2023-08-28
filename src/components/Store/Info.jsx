@@ -56,8 +56,8 @@ const Info = ({ data, variant,isLoading }) => {
         <h2
           className={`${
             variant === 'card'
-              ? 'text-lg font-semibold'
-              : 'lg:text-3xl sm:text-2xl font-bold text-gray-800'
+              ? 'text-lg font-semibold dark:text-white'
+              : 'lg:text-3xl sm:text-2xl font-bold dark:text-white text-gray-800'
           }`}>
           {data?.name}
         </h2>
@@ -67,18 +67,18 @@ const Info = ({ data, variant,isLoading }) => {
         <div
           className={`${
             variant === 'card'
-              ? 'font-semibold text-lg'
-              : 'sm:text-lg lg:text-2xl text-neutral-700'
+              ? 'font-semibold text-lg dark:text-gray-300'
+              : 'sm:text-lg lg:text-2xl text-neutral-700 dark:text-gray-300'
           }`}>
           <Currency value={data?.price} />
         </div>
         <div className={variant === 'card' ? 'hidden' : 'flex gap-2 flex-col'}>
           <div className="flex items-center gap-x-3">
-            <h3 className="font-semibold thext-black">Size:</h3>
+            <h3 className="font-semibold dark:text-white text-black">Size:</h3>
             <span>{data?.size?.name}</span>
           </div>
           <div className="flex items-center gap-x-3">
-            <h3 className="font-semibold text-black">Color:</h3>
+            <h3 className="font-semibold text-black dark:text-white">Color:</h3>
             <span
               className="h-6 w-6 rounded-full border border-neutral-300"
               style={{ backgroundColor: data?.color.value }}
