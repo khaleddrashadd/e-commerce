@@ -24,13 +24,11 @@
 
 Mercato E-commerce web app built with reactJS + supabase storage + supabase DB + supabase edge functions + shadcn ui + clerkJs for auth  with functionality of payment using stripe, dark mode and roles of admins adn users.
 
-## Demo
-
 Explore my demo Mercato (e-commerce) app.
 
 <div>
   <a href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/" target="_blank">
-    <img  alt="e-commerce-demo" height="35" src="./public/logo.png">
+    <img  alt="e-commerce-demo" height="35" src="./public/mercato.png">
   </a>
 </div>
 <div>
