@@ -37,7 +37,7 @@ Explore my demo Mercato (e-commerce) app.
 </div>
 <div>
 <h1>ADMIN Dashboard demo Credentrials</h1>
-  <a style="display:block;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Admin Dashboard Demo</a>
+  <a style="display:block;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/admin">Admin Dashboard Demo</a>
 <h3>E-Mail: (demoappecommerce@gmail.com)</h3>
 <h3>Password: (mercatoapp)</h3>
 </div>
