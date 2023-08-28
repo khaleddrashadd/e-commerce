@@ -5,8 +5,11 @@
 <div align="center">
   <h1 align="center">Mercato</h1>
 </div>
+<div>
     <a style="display:flex;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Demo</a>
+</div>
 
+<div>
 <div align="center">
 <img alt="mercato-image" width="950" src="./public/readme/readme1.png"/>
 </div>
@@ -19,10 +22,11 @@
 <div style="margin-top:2rem;" align="center">
 <img alt="mercato-image" width="950" src="./public/readme/readme3.png"/>
 </div>
+</div>
 
 ## Introduction
 
-Mercato E-commerce web app built with reactJS + supabase storage + supabase DB + supabase edge functions + shadcn ui + clerkJs for auth  with functionality of payment using stripe, dark mode and roles of admins adn users.
+Mercato E-commerce web app built with reactJS + supabase storage + supabase DB + supabase edge functions + shadcn ui + clerkJs for auth with functionality of payment using stripe, dark mode and roles of admins adn users.
 
 Explore my demo Mercato (e-commerce) app.
 
@@ -33,7 +37,7 @@ Explore my demo Mercato (e-commerce) app.
 </div>
 <div>
 <h1>ADMIN Dashboard demo Credentrials</h1>
-  <a style="display:block;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Demo</a>
+  <a style="display:block;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Admin Dashboard Demo</a>
 <h3>E-Mail: (demoappecommerce@gmail.com)</h3>
 <h3>Password: (mercatoapp)</h3>
 </div>
