@@ -28,7 +28,7 @@ const Filter = ({ data, name, valueKey }) => {
     <div className="mb-8">
       <h3 className="text-lg font-semibold">{name}</h3>
       <hr className="my-4" />
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-4">
         {data?.map((filter) => (
           <div
             key={filter.id}

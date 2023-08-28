@@ -58,13 +58,13 @@ const CategoryPage = () => {
       </BillboardCover>
       <div className="px-4 sm:px-6 lg:px-8 pb-24 font-urbanist">
         {currentCategoryProducts.length !== 0 ? (
-          <div className=" flex items-start lg:items-center lg:gap-x-10 flex-col lg:flex-row gap-4">
+          <div className="flex items-start lg:items-center lg:gap-x-10 flex-col lg:flex-row gap-4">
             <MobileFilters
               size={sizes}
               color={colors}
               variant={!colorId && !sizeId ? 'outline' : 'default'}
             />
-            <div className="hidden lg:block flex-shrink-0">
+            <div className="hidden lg:block">
               <Filter
                 valueKey="sizeId"
                 data={sizes}

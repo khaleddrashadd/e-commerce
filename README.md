@@ -1,8 +1,50 @@
-# React + Vite
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<div align="center">
+<img height="68" alt="Mercato Logo" src="./public/mercato.png"/>
+</div>
+<div align="center">
+  <h1 align="center">Mercato</h1>
+</div>
+    <a style="display:flex;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Demo</a>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+<img alt="mercato-image" width="950" src="./public/readme/readme1.png"/>
+</div>
+<div style="margin-top:2rem;" align="center">
+<img alt="mercato-image" width="950" src="./public/readme/readme.png"/>
+</div>
+<div style="margin-top:2rem;" align="center">
+<img alt="mercato-image" width="950" src="./public/readme/readme2.png"/>
+</div>
+<div style="margin-top:2rem;" align="center">
+<img alt="mercato-image" width="950" src="./public/readme/readme3.png"/>
+</div>
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Mercato E-commerce web app built with reactJS + supabase storage + supabase DB + supabase edge functions + shadcn ui + clerkJs for auth  with functionality of payment using stripe, dark mode and roles of admins adn users.
+
+## Demo
+
+Explore my demo Mercato (e-commerce) app.
+
+<div>
+  <a href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/" target="_blank">
+    <img  alt="e-commerce-demo" height="35" src="./public/logo.png">
+  </a>
+</div>
+<div>
+<h1>ADMIN Dashboard demo Credentrials</h1>
+<h2>E-Mail:demoappecommerce@gmail.com</h2>
+<h2>Password:mercatoapp</h2>
+</div>
+
+## Support
+
+If you like my work, feel free to:
+
+- ⭐ this repository. It helps.
+
+### Create a bug report
+
+If you see an error message or run into an issue, please [create bug report](https://github.com/khaleddrashadd/e-commerce/issues). This effort is valued.
