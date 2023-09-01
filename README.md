@@ -5,10 +5,9 @@
 <div align="center">
   <h1 align="center">Mercato</h1>
 </div>
-<div>
-    <a style="display:flex;justify-content:center;margin-bottom:1rem; font-weight:bold;" href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/">Demo</a>
-</div>
 
+
+ <a href="https://mercato-app-khaled.vercel.app/">
 <div>
 <div align="center">
 <img alt="mercato-image" width="950" src="./public/readme/readme1.png"/>
@@ -23,6 +22,8 @@
 <img alt="mercato-image" width="950" src="./public/readme/readme3.png"/>
 </div>
 </div>
+</a>
+
 
 ## Introduction
 
