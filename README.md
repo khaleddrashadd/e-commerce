@@ -30,6 +30,16 @@ Mercato E-commerce web app built with reactJS + supabase storage + supabase DB +
 
 Explore my demo Mercato (e-commerce) app.
 
+##Main Technologies used
+
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+
+
 <div>
   <a href="https://mercato-app-khaled-934nlx9fw-khaleddrashadd.vercel.app/" target="_blank">
     <img  alt="e-commerce-demo" height="35" src="./public/mercato.png">
