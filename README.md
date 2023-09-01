@@ -30,7 +30,7 @@ Mercato E-commerce web app built with reactJS + supabase storage + supabase DB +
 
 Explore my demo Mercato (e-commerce) app.
 
-##Main Technologies used
+## Main Technologies used
 
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
